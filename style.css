@@ -93,6 +93,16 @@ li{
     padding-right: 100px;
     text-align: left;
 }
+.main {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 50px;
+}
+.mainContainer {
+    width: 60vw;
+
+}
 
 .links {
     display: flex;
