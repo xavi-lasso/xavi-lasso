@@ -1,3 +1,10 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @font-face {
     font-family: 'pp_moriregular';
     src: url('fonts/ppmori-regular-webfont.woff2') format('woff2'),
@@ -31,7 +38,7 @@
 
 }
 html{
-    box-sizing: border-box;
+    
     /* background-color: #d9d9d9; */
 }
 
