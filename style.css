@@ -37,10 +37,6 @@
     font-style: normal;
 
 }
-html{
-    
-    /* background-color: #d9d9d9; */
-}
 
 h2{
     font-family: pp_morisemibold;
@@ -48,21 +44,16 @@ h2{
 
 p{
     font-family: pp_moribook;
-    /* color: #1b1b1b; */
     font-size: 20px;
     line-height: 23px;
     letter-spacing: 0.5px;
-    padding: 0px 60px;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 
 a{
-    /* display: inline-block; */
     text-decoration: none;
-    /* color: #1b1b1b; */
     transition: color 0.5s;
-
 }
 
 a:hover {
@@ -76,76 +67,71 @@ a:active {
 }
 
 img {
-
-    /* width: 100%; */
     object-fit: cover;
-
 }
 
-.navBar{
+.navBar {
     padding: 30px;
-}
-
-.navItems {
     display: flex;
-    list-style-type: none;  
+    justify-content: space-between;
 }
 
 .navbutton {
     font-family: pp_moribook;
-    font-size: 40px;
+    font-size: 50px;
 }
 
-li{
-    padding-right: 100px;
-    text-align: left;
-}
 .main {
+    height:80vh;
     display: flex;
     align-items: center;
     justify-content:center;
-    padding: 50px;
+    /* margin: 200px 0 200px 0; */
 }
 .mainContainer {
-    width: 60vw;
+
+    width: 75vw;
 
 }
 
 .links {
+    padding: 30px;
     display: flex;
-    align-items: center;
-    justify-content:center;
-    padding: 50px;
+    align-items: flex-end;
+    justify-content:space-between;
+    align-items: flex-end;
     font-family: pp_moribook;
     font-size: 24px;
 }
 
-button{
-    background: none;
-    border:none;
+.linkItem{
+
     text-transform: uppercase;
     font-size: 16px;
-    margin: 1em;
-    transition: color 0.5s;
+
   }
 
 .bioContainer {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 50px;
+    flex-wrap: wrap;
+    /* padding: 50px; */
 }
 
-.bio {
+.bioText {
 
-    width: 550px;
+    max-width: 600px;
+    padding: 30px;
     
 }
 
-.profilePic {
-    width: 500px;
-    height: 500px;
+.bioImg {
+
+    max-width: 600px;
+    padding: 30px;
     overflow: hidden;
+
 }
 
 .vimeoEmbed {
@@ -165,20 +151,14 @@ button{
 }
 
 @media (prefers-color-scheme: light) {
+
     body {
         background-color: #d9d9d9;
         color:#1b1b1b;
     }
+
     a {
         color:#1b1b1b;
     }
+
 }
-
-
-
-
-
-
-
-
-
