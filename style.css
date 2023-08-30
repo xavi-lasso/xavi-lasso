@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+    
+    height: 100%;
+    
+}
+
 @font-face {
     font-family: 'pp_moriregular';
     src: url('fonts/ppmori-regular-webfont.woff2') format('woff2'),
@@ -42,6 +48,7 @@ h2{
     font-family: pp_morisemibold;
 }
 
+
 p{
     font-family: pp_moribook;
     font-size: 20px;
@@ -55,89 +62,88 @@ a{
     text-decoration: none;
     transition: color 0.5s;
 }
-
 a:hover {
     color: #ef9d21;
     transition: color 0.5s;
 }
-
 a:active {
     color: #FFFFFF;
     transition: color 0.5s;
 }
-
-img {
-    object-fit: cover;
+.wrapper {
+    box-sizing: border-box;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .navBar {
     padding: 30px;
     display: flex;
     justify-content: space-between;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
-
 .navbutton {
     font-family: pp_moribook;
     font-size: 50px;
 }
+
 
 .main {
     height:80vh;
     display: flex;
     align-items: center;
     justify-content:center;
-    /* margin: 200px 0 200px 0; */
 }
 .mainContainer {
-
     width: 75vw;
-
 }
 
-.links {
+
+.footerLinks {
     padding: 30px;
     display: flex;
     align-items: flex-end;
     justify-content:space-between;
     align-items: flex-end;
-    font-family: pp_moribook;
-    font-size: 24px;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    flex-shrink: 0;
+    
+    
 }
-
 .linkItem{
 
     text-transform: uppercase;
     font-size: 16px;
+    font-family: pp_morisemibold;
 
   }
 
+
+
 .bioContainer {
+    /* height:70vh; */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    /* padding: 50px; */
+    flex-grow: 1;
 }
-
 .bioText {
-
     max-width: 600px;
-    padding: 30px;
-    
+    margin: 30px;   
 }
-
 .bioImg {
-
-    max-width: 600px;
-    padding: 30px;
+    max-width: 300px;
     overflow: hidden;
-
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 30px;
 }
 
-.vimeoEmbed {
-    padding-top: 50px;
-    padding-bottom: 100px;
-}
 
 @media (prefers-color-scheme: dark) {
     body {
@@ -147,18 +153,14 @@ img {
     a {
         color:#d9d9d9;
     }
-
 }
 
 @media (prefers-color-scheme: light) {
-
     body {
         background-color: #d9d9d9;
         color:#1b1b1b;
     }
-
     a {
         color:#1b1b1b;
     }
-
 }
