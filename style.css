@@ -3,15 +3,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #e5e5e5;
+  color:#1a1a1a;
 }
 
 html, body {
     
     height: 100%;
     
+    
 }
 
-@font-face {
+/* @font-face {
     font-family: 'pp_moriregular';
     src: url('fonts/ppmori-regular-webfont.woff2') format('woff2'),
          url('fonts/ppmori-regular-webfont.woff') format('woff');
@@ -42,33 +45,43 @@ html, body {
     font-weight: normal;
     font-style: normal;
 
+} */
+@font-face {
+    font-family: 'Univers-light';
+    src: url('fonts/univers-light-normal-webfont.woff2') format('woff2'),
+         url('fonts/univers-light-normal-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
+
 h2{
-    font-family: pp_morisemibold;
+    font-family: Univers-light;
 }
 
 
 p{
-    font-family: pp_moribook;
+    font-family: Univers-light;
     font-size: 20px;
-    line-height: 23px;
-    letter-spacing: 0.5px;
+    line-height: 21px;
+    letter-spacing: 0.3px;
     /* text-align: justify; */
 }
 
 
 a{
     text-decoration: none;
-    transition: color 0.5s;
+    color:#1a1a1a;
+    transition: color 0.3s;
 }
 a:hover {
-    color: #ef9d21;
-    transition: color 0.5s;
+    color: #00bb00;
+    transition: color 0.3s;
 }
 a:active {
-    color: #FFFFFF;
-    transition: color 0.5s;
+    color: #00bb00;
+    transition: color 0.3s;
 }
 .wrapper {
     box-sizing: border-box;
@@ -85,8 +98,8 @@ a:active {
     flex-shrink: 0;
 }
 .navbutton {
-    font-family: pp_moribook;
-    font-size: 50px;
+    font-family: Univers-light;
+    font-size: 44px;
 }
 
 
@@ -113,14 +126,24 @@ a:active {
     
     
 }
-.linkItem{
+a.linkItem{
 
     text-transform: uppercase;
-    font-size: 16px;
-    font-family: pp_morisemibold;
+    font-size: 14px;
+    font-family: Univers-light;
+    color: #00bb00;
+    font-weight: 600;
 
   }
 
+a.linkItem:hover {
+    color: #1a1a1a;
+    transition: color 0.3s;
+}
+a.linkItem:active {
+    color: #1a1a1a;
+    transition: color 0.3s;
+}
 
 
 .bioContainer {
@@ -133,34 +156,40 @@ a:active {
     flex-grow: 1;
 }
 .bioText {
-    max-width: 600px;
+    max-width: 500px;
     margin: 30px;   
 }
 .bioImg {
     max-width: 300px;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 7px;
     object-fit: cover;
     margin: 30px;
 }
 
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1b1b1b;
-        color:#d9d9d9;
+    * {
+        background-color: #1a1a1a;
+        color:#e5e5e5;;
     }
     a {
-        color:#d9d9d9;
+        color:#e5e5e5;
+    }
+    a.linkItem:hover {
+        color:#e5e5e5;
     }
 }
 
 @media (prefers-color-scheme: light) {
-    body {
-        background-color: #d9d9d9;
-        color:#1b1b1b;
+    * {
+        background-color: #e5e5e5;;
+        color:#1a1a1a;
     }
     a {
-        color:#1b1b1b;
+        color:#1a1a1a;
+    }
+    a.linkItem:hover {
+        color: #1a1a1a;
     }
 }
