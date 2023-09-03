@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #e5e5e5;
+    color:#1a1a1a;
+    font-family: Univers-light;
+  
+  }
+  
+  html, body {
+      
+      height: 100%;
+      
+      
+  }
+  
+  /* @font-face {
+      font-family: 'pp_moriregular';
+      src: url('fonts/ppmori-regular-webfont.woff2') format('woff2'),
+           url('fonts/ppmori-regular-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  
+  }
+  @font-face {
+      font-family: "pp_morisemibold";
+      src: url('fonts/ppmori-semibold-webfont.woff2') format('woff2'),
+           url('fonts/ppmori-semibold-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  
+  }
+  @font-face {
+      font-family: 'pp_moriextrabold';
+      src: url('fonts/ppmori-extrabold-webfont.woff2') format('woff2'),
+           url('fonts/ppmori-extrabold-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  
+  }
+  @font-face {
+      font-family: 'pp_moribook';
+      src: url('fonts/ppmori-book-webfont.woff2') format('woff2'),
+           url('fonts/ppmori-book-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  
+  } */
+  @font-face {
+      font-family: 'Univers-light';
+      src: url('../fonts/univers-light-normal-webfont.woff2') format('woff2'),
+           url('../fonts/univers-light-normal-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  
+  }
+  
+  
+  h2{
+      font-family: Univers-light;
+  }
+  h4{
+      font-size: 20px;
+      line-height: 22px;
+      letter-spacing: 0.3px;
+      font-weight:300;
+      color: #00bb00;
+  }
+  
+  
+  p{
+      font-family: Univers-light;
+      font-size: 20px;
+      line-height: 23px;
+      letter-spacing: 0.3px;
+      /* text-align: justify; */
+  }
+  
+  
+  a{
+      text-decoration: none;
+      color:#1a1a1a;
+      transition: color 0.3s;
+  }
+  a:hover {
+      color: #00bb00;
+      transition: color 0.3s;
+  }
+  a:active {
+      color: #00bb00;
+      transition: color 0.3s;
+  }
+  .wrapper {
+      box-sizing: border-box;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .navBar {
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      flex-grow: 0;
+      flex-shrink: 0;
+  }
+  .navbutton {
+      font-family: Univers-light;
+      font-size: 44px;
+  }
+  
+  
+  .main {
+      height:80vh;
+      display: flex;
+      align-items: center;
+      justify-content:center;
+  }
+  .mainContainer {
+      width: 75vw;
+  }
+  
+  
+
+  
+  @media (prefers-color-scheme: dark) {
+      * {
+          background-color: #1a1a1a;
+          color:#e5e5e5;;
+      }
+      a {
+          color:#e5e5e5;
+      }
+      a.linkItem:hover {
+          color:#e5e5e5;
+      }
+  }
+  
+  @media (prefers-color-scheme: light) {
+      * {
+          background-color: #e5e5e5;;
+          color:#1a1a1a;
+      }
+      a {
+          color:#1a1a1a;
+      }
+      a.linkItem:hover {
+          color: #1a1a1a;
+      }
+  }

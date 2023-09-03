@@ -1,20 +1,13 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: #e5e5e5;
-  color:#1a1a1a;
-  font-family: Univers-light;
-}
+/* 
+REF ITEMS
+---
+GRIDS
+grid-template
+row-gap
+grid-area 
 
-html, body {
-    
-    height: 100%;
-    
-    
-}
-
+*/
 /* @font-face {
     font-family: 'pp_moriregular';
     src: url('fonts/ppmori-regular-webfont.woff2') format('woff2'),
@@ -46,7 +39,7 @@ html, body {
     font-weight: normal;
     font-style: normal;
 
-} */
+}
 @font-face {
     font-family: 'Univers-light';
     src: url('fonts/univers-light-normal-webfont.woff2') format('woff2'),
@@ -54,27 +47,48 @@ html, body {
     font-weight: normal;
     font-style: normal;
 
+} */
+
+@font-face {
+    font-family: 'Monument-Extended-Light';
+    src: url('fonts/PPMonumentExtended-Light.woff2') format('woff2');
+
 }
 
+:root {
+    --main-font: Monument-Extended-Light;
+  }
+  
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #e5e5e5;
+  color:#1a1a1a;
+  font-family: --main-font;
+  line-height: 1.2;
+
+
+}
+
+html, body {
+    
+    height: 100%;
+    
+    
+}
 
 h2{
-    font-family: Univers-light;
+    font-family: var(--main-font);
 }
-h4{
-    font-size: 20px;
-    line-height: 22px;
-    letter-spacing: 0.3px;
-    font-weight:300;
-    color: #00bb00;
-}
-
 
 p{
-    font-family: Univers-light;
+    font-family: var(--main-font);
     font-size: 20px;
-    line-height: 23px;
+    line-height: 1.1;
     letter-spacing: 0.3px;
-    /* text-align: justify; */
+  
 }
 
 
@@ -106,7 +120,7 @@ a:active {
     flex-shrink: 0;
 }
 .navbutton {
-    font-family: Univers-light;
+    font-family: var(--main-font);
     font-size: 44px;
 }
 
@@ -118,7 +132,7 @@ a:active {
     justify-content:center;
 }
 .mainContainer {
-    width: 75vw;
+    width: 70vw;
 }
 
 
@@ -136,11 +150,11 @@ a:active {
 }
 a.linkItem{
 
-    text-transform: uppercase;
-    font-size: 14px;
-    font-family: Univers-light;
+    /* text-transform: uppercase; */
+    font-size: 20px;
+    font-family: var(--main-font);
     color: #00bb00;
-    font-weight: 600;
+    
 
   }
 
@@ -157,7 +171,7 @@ a.linkItem:active {
 .bioContainer {
     /* height:70vh; */
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     align-content: center;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -191,7 +205,7 @@ a.linkItem:active {
 
 @media (prefers-color-scheme: light) {
     * {
-        background-color: #e5e5e5;;
+        background-color: #e5e5e5;
         color:#1a1a1a;
     }
     a {
