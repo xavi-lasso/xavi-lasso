@@ -1,13 +1,12 @@
-
-/* 
+/* ---
 REF ITEMS
 ---
+
 GRIDS
+
 grid-template
 row-gap
-grid-area 
-
-*/
+grid-area  */
 
 @font-face {
     font-family: 'Monument-Extended-Light';
@@ -166,6 +165,4 @@ a.linkItem:active {
         --bg-color: #e5e5e5;
         --color:#1a1a1a;
     }
-
-    
 }
