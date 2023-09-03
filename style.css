@@ -96,6 +96,7 @@ a{
     text-decoration: none;
     color:#1a1a1a;
     transition: color 0.3s;
+    font-family: var(--main-font);
 }
 a:hover {
     color: #00bb00;
@@ -153,17 +154,17 @@ a.linkItem{
     /* text-transform: uppercase; */
     font-size: 20px;
     font-family: var(--main-font);
-    color: #00bb00;
+    color: #e5e5e5;
     
 
   }
 
 a.linkItem:hover {
-    color: #1a1a1a;
+    color: #00bb00;
     transition: color 0.3s;
 }
 a.linkItem:active {
-    color: #1a1a1a;
+    color: #00bb00;
     transition: color 0.3s;
 }
 
@@ -193,14 +194,11 @@ a.linkItem:active {
 @media (prefers-color-scheme: dark) {
     * {
         background-color: #1a1a1a;
-        color:#e5e5e5;;
+        color:#e5e5e5;
     }
     a {
         color:#e5e5e5;
-    }
-    a.linkItem:hover {
-        color:#e5e5e5;
-    }
+    
 }
 
 @media (prefers-color-scheme: light) {
@@ -211,7 +209,5 @@ a.linkItem:active {
     a {
         color:#1a1a1a;
     }
-    a.linkItem:hover {
-        color: #1a1a1a;
-    }
+    
 }
