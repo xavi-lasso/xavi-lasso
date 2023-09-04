@@ -8,6 +8,8 @@ grid-template
 row-gap
 grid-area  */
 
+/* FUNDAMENTAL */
+
 @font-face {
     font-family: 'Monument-Extended-Light';
     src: url('fonts/PPMonumentExtended-Light.woff2') format('woff2');
@@ -65,6 +67,7 @@ a:active {
     transition: color 0.3s;
 }
 
+/* BODY */
 
 .wrapper {
     box-sizing: border-box;
@@ -73,6 +76,7 @@ a:active {
     flex-direction: column;
 }
 
+/* NAVIGATION */
 
 .navBar {
     padding: 30px;
@@ -86,6 +90,7 @@ a:active {
     font-size: 44px;
 }
 
+/* MAIN-VIDEO */
 
 .main {
     height:80vh;
@@ -97,38 +102,7 @@ a:active {
     width: 70vw;
 }
 
-
-.footerLinks {
-    padding: 30px;
-    display: flex;
-    align-items: flex-end;
-    justify-content:space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    flex-grow: 0;
-    flex-shrink: 0;
-    
-    
-}
-a.linkItem{
-
-    /* text-transform: uppercase; */
-    font-size: 20px;
-    font-family: var(--main-font);
-    color: var(--color);
-    
-
-  }
-
-a.linkItem:hover {
-    color: var(--color-accent);
-    transition: color 0.3s;
-}
-a.linkItem:active {
-    color: var(--color-accent);
-    transition: color 0.3s;
-}
-
+/* ABOUT-BIO */
 
 .bioContainer {
     /* height:70vh; */
@@ -151,6 +125,35 @@ a.linkItem:active {
     margin: 30px;
 }
 
+/* ABOUT-FOOTER */
+
+.footerLinks {
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content:space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    flex-shrink: 0;   
+}
+a.linkItem{
+    font-size: 20px;
+    font-family: var(--main-font);
+    color: var(--color);
+  }
+
+a.linkItem:hover {
+    color: var(--color-accent);
+    transition: color 0.3s;
+}
+a.linkItem:active {
+    color: var(--color-accent);
+    transition: color 0.3s;
+}
+
+
+/* LIGHT-DARK MODE */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -165,4 +168,28 @@ a.linkItem:active {
         --bg-color: #e5e5e5;
         --color:#1a1a1a;
     }
+}
+
+@media only screen and (max-width: 480px){
+    .navbutton {
+        
+        font-size: 36px;
+    }
+    .bioText {
+        text-align: center;
+    }
+
+    .footerLinks {
+        flex-direction: column;
+        align-content: center;
+        align-items: center;
+    }
+
+
+    a.linkItem{
+margin-top: 5px;
+
+
+      }
+
 }
