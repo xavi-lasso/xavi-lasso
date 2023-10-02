@@ -8,7 +8,8 @@
         <link href="style.css" rel="stylesheet" type="text/css"/>
     </head>
 
-    <body>
+    <body data-barba="wrapper">
+
         <div class="wrapper">
 
             <div class="navContainer">
@@ -20,19 +21,40 @@
                 </div>
             </div>
 
-            <div class="main">
+            <main class="main" data-barba="container" data-barba-namespace="home">
                 <div class="mainContainer">
 
                     <div style="padding-bottom: 56.25%; position: relative;"><iframe style="border-radius: 7px;position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" width="100%" height="100%" src="https://player.vimeo.com/video/684515682?autopause=0&byline=0&fun=0&loop=1&portrait=0&muted=1&autoplay=1&title=0&sidedock=0&controls=0" frameborder="0" color="d9d9d9" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" ></iframe></div>
 
                 </div>
-            </div>
+            </main>
 
         </div>
 
 
 
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://unpkg.com/@barba/core"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
         <script src="scripts/main.js"></script>
+
+        <script type="text/javascript">
+            barba.init({
+              transitions: [{
+                name: 'opacity-transition',
+                leave(data) {
+                  return gsap.to(data.current.container, {
+                    opacity: 0
+                  });
+                },
+                enter(data) {
+                  return gsap.from(data.next.container, {
+                    opacity: 0
+                  });
+                }
+              }]
+            });
+          </script>
 
     </body>
 

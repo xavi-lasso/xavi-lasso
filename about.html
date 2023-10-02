@@ -8,7 +8,7 @@
         <link href="style.css" rel="stylesheet" type="text/css"/>
     </head>
 
-    <body>
+    <body data-barba="wrapper">
 
         <div class="wrapper">
 
@@ -24,7 +24,7 @@
 
 
         
-            <div class="bioContainer">
+            <main class="bioContainer" data-barba="container" data-barba-namespace="about">
 
                 
                 <img class = "bioImg" src="images/xavi-profile-v01.jpg" alt="profile picture of xavi, black and white, looking sideways with a blue light streak"/>
@@ -33,10 +33,12 @@
                 <div class="bioText">
 
 
-                    <p>musician | CG designer | creative technologist 
+                    <p>Designer, Art Director, and Creative Technologist working with 3D to create visuals inspired by beauty and fueled by intention. 
+                    
                     <br>
                     <br>
-                    <p>Please feel free to <a href="mailto:xavi@xavi.works" target="_blank">reach out</a>, we can have a chat over some coffee or hang out in the virtual space.</p>
+                    Email me at <a href="mailto:xavi@xavi.works" target="_blank">xavi@xavi.works</a>
+                    </p>
                     <!-- <br> 
                     <br>   
                     <h4>Services include:</h4>
@@ -50,7 +52,7 @@
                 </div>
 
 
-            </div>
+            </main>
 
 
             <footer class="footerLinks">
@@ -66,8 +68,28 @@
         </div>
 
 
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://unpkg.com/@barba/core"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
         <script src="scripts/main.js"></script>
 
+        <script type="text/javascript">
+            barba.init({
+              transitions: [{
+                name: 'opacity-transition',
+                leave(data) {
+                  return gsap.to(data.current.container, {
+                    opacity: 0
+                  });
+                },
+                enter(data) {
+                  return gsap.from(data.next.container, {
+                    opacity: 0
+                  });
+                }
+              }]
+            });
+          </script>
 
     </body>
 
