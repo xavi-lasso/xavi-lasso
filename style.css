@@ -57,6 +57,7 @@ a{
     font-family: var(--main-font);
 }
 
+
 a:hover {
     color: var(--color-accent);
     transition: color 0.3s;
@@ -65,6 +66,13 @@ a:hover {
 a:active {
     color: var(--color-accent);
     transition: color 0.3s;
+}
+
+.contactLink {
+    color: var(--color-accent);
+}
+.contactLink:hover{
+    color: var(--color);
 }
 
 /* BODY */
