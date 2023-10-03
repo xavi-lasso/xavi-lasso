@@ -11,16 +11,16 @@ grid-area  */
 /* FUNDAMENTAL */
 
 @font-face {
-    font-family: 'Monument-Extended-Light';
-    src: url('fonts/PPMonumentExtended-Light.woff2') format('woff2');
+    font-family: 'PP-Mori-SemiBold';
+    src: url('fonts/ppmori-semibold-webfont.woff2') format('woff2');
 
 }
 
 :root {
-    --main-font: Monument-Extended-Light;
-    --bg-color: #1a1a1a;
-    --color: #e5e5e5;
-    --color-accent: #52b3c9;
+    --main-font: PP-Mori-SemiBold;
+    --bg-color: #B6B6B6;
+    --color: #FFFFFF;
+    --color-accent: #d9ff00;
 
   }
   
@@ -163,7 +163,7 @@ a.linkItem:active {
 
 /* LIGHT-DARK MODE */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --bg-color: #1a1a1a;
         --color:#e5e5e5;
@@ -176,7 +176,7 @@ a.linkItem:active {
         --bg-color: #e5e5e5;
         --color:#1a1a1a;
     }
-}
+} */
 
 @media only screen and (max-width: 480px){
     .navbutton {
