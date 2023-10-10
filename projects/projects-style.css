@@ -1,0 +1,190 @@
+/* ---
+REF ITEMS
+---
+
+GRIDS
+
+grid-template
+row-gap
+grid-area  */
+
+/* FUNDAMENTAL */
+
+@font-face {
+    font-family: 'PP-Monument-Extended';
+    src: url('fonts/PPMonumentExtended-Regular.woff2') format('woff2');
+
+}
+
+:root {
+    --main-font: PP-Monument-Extended;
+    --bg-color: #B6B6B6;
+    --color: #FFFFFF;
+    --color-accent: #333333;
+
+  }
+  
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-color);
+  color: var(--color);
+  font-family: var(--main-font);
+  line-height: 1.2;
+}
+
+html, body {   
+    height: 100%;     
+    
+}
+
+h2{
+    font-family: var(--main-font);
+}
+
+p{
+    font-family: var(--main-font);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 0.15px; 
+}
+
+a{
+    text-decoration: none;
+    color:var(--color);
+    transition: color 0.3s;
+    font-family: var(--main-font);
+}
+
+
+a:hover {
+    color: var(--color-accent);
+    transition: color 0.3s;
+}
+
+a:active {
+    color: var(--color-accent);
+    transition: color 0.3s;
+}
+
+.contactLink {
+    color: var(--color-accent);
+}
+.contactLink:hover{
+    color: var(--color);
+}
+
+/* BODY */
+
+.canvas{
+    max-width: 2000px;
+    padding: 20px 50px 100px 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+    box-sizing: border-box;
+    /* min-height: 100vh;
+    min-height: 100dvh;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto; */
+}
+
+/* NAVIGATION */
+
+.navBar {
+    /* width: 312px; */
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbutton {
+    font-family: var(--main-font);
+    font-size: 44px;
+}
+
+.intro{
+    align-items: center;
+    margin: 75px 0px 50px 0px;
+    max-width: 500px;
+}
+
+/* MAIN */
+
+.project-info{
+
+    margin: 100px 0 100px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.project-video{
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+
+.project-image{
+    width:100%;
+}
+
+.image-group{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    margin-bottom: 50px;
+    align-items: center;
+}
+.image-group-2{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
+
+}
+
+.image-group-3{
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+/* LIGHT-DARK MODE */
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1a1a1a;
+        --color:#e5e5e5;
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #e5e5e5;
+        --color:#1a1a1a;
+    }
+} */
+
+@media only screen and (max-width: 750px){
+
+    .canvas{
+        padding: 20px 20px 0px 20px;
+    }
+
+    .project-info, .image-group, .image-group-2, .image-group-3{
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+}
+
+@media only screen and (max-width: 1240px){
+ 
+}
