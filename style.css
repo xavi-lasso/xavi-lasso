@@ -3,15 +3,23 @@
 @font-face {
     font-family: 'PP-Monument-Extended';
     src: url('fonts/PPMonumentExtended-Regular.woff2') format('woff2');
+}
 
+@font-face {
+    font-family: 'PP-Monument-Extended-Bold';
+    src: url('fonts/PPMonumentExtended-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'PP-Monument-Extended-Black';
+    src: url('fonts/PPMonumentExtended-Black.woff2') format('woff2');
 }
 
 :root {
     --main-font: PP-Monument-Extended;
-    --bg-color: #839eab;
-    --color: #FFFFFF;
-    --color-accent: #0084ff;
-
+    --bg-color: #c9c9c9;
+    --color: #111111;
+    --color-accent: #ffffff;
   }
   
 
@@ -19,7 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* background-color: var(--bg-color); */
+  background-color: var(--bg-color);
   color: var(--color);
   font-family: var(--main-font);
   line-height: 1.2;
@@ -31,6 +39,148 @@ html, body {
     
 }
 
+.canvas{
+    max-width: 1600px;
+    margin:0 auto;
+}
+
+/* NAVIGATION */
+
+.nav{
+    
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    padding:30px 20px 20px 20px;
+    height:120px;
+    width: 100%;
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 20px;
+    align-items: center;
+    background: none;
+    z-index: 10;
+}
+
+.projects{
+    width: 100%;
+    padding:20px; 
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+img {
+
+    width: 100%;
+/* object-fit: cover; */
+/* object-position: center; */
+/* overflow: hidden; */
+
+}
+
+.project-image{
+    
+    
+    border-radius: 10px;
+
+}
+
+.navbutton-1{
+    font-family:'PP-Monument-Extended-Black';
+    font-size: 60px;
+    grid-area: 1 / 1 / span 2 / span 2;
+    z-index: 10;
+    background: none;
+    
+}
+.navbutton-2{
+    font-family:'PP-Monument-Extended-Black';
+    font-size: 60px;
+    grid-area: 1 / 2 / span 2 / span 2;
+    text-align: right;
+    z-index: 10;
+    background: none;
+}
+
+.bio-grid{
+    width: 100%;
+    padding:20px; 
+    height: calc(100vh - 120px) !important;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    row-gap: 20px;
+    align-items: normal;
+    justify-content: center;
+    background: none;
+    z-index: 10;
+
+}
+
+.bio{
+
+    grid-area: 3 / 1 / span 4 / span 2 ;
+    font-family: var(--main-font);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 0.15px; 
+    background: none;
+    z-index: 10;
+}
+
+.contact-1{
+    grid-area: 4 / 3 / span 2 / span 1 ; 
+    text-align: right;
+    font-size: 24px;
+    z-index: 10;
+    background: none;
+}
+
+.contact-2{
+    grid-area: 4 / 4 / span 2 / span 1 ; 
+    text-align: right;
+    font-size: 24px;
+    z-index: 10;
+    background: none;
+}
+
+.availability{
+    grid-area: 10 / 1 / span 1 / span 2;
+    font-size: 24px;
+    z-index: 10;
+    background: none;
+}
+
+.place{
+    grid-area: 10 / 3 / span 1 / span 1;
+    text-align: right;
+    font-size: 24px;
+    z-index: 10;
+    background: none;
+}
+
+.time-of-day{
+    grid-area: 10 / 4 / span 1 / span 1 ;
+    text-align: right;
+    font-size: 24px;
+    z-index: 10;
+    background: none;
+}
+
+.cursor-follow {
+    position: absolute;
+    background: url(images/xavi-profile-v01.jpg) no-repeat 50% 50%;
+    background-size: cover;
+    width: 300px;
+    height: 400px;
+    z-index: 0;
+ 
+    user-select: none;
+    pointer-events: none;
+    transform: translate(5px, 5px);
+}
 p{
     font-family: var(--main-font);
     font-size: 24px;
@@ -40,99 +190,27 @@ p{
 
 a{
     text-decoration: none;
-    color:var(--color-accent);
-    transition: color 0.3s;
+    color:var(--color);
+    transition: color 0.5s;
     font-family: var(--main-font);
+    background: none;
 }
 
 
 a:hover {
     color: var(--color-accent);
-    transition: color 0.3s;
+    transition: color 0.5s;
 }
 
 a:active {
     color: var(--color-accent);
-    transition: color 0.3s;
+    transition: color 0.5s;
 }
 
-/* video */
 
-.bg-video{
-    width: 100vw;
-    height: 100vh;
-  }
-  
-   iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 100vh;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  @media (min-aspect-ratio: 16/9) {
-    .bg-video iframe {
-      height: 56.25vw;
-    }
-  }
-  @media (max-aspect-ratio: 16/9) {
-    .bg-video iframe {
-      width: 177.78vh;
-    }
-  }
-  
-
-
-/* NAVIGATION */
-
-.navBar {
-    
-    font-size: 16px;
-    letter-spacing: 0.3px;
-    padding:20px;
-    height:100vh;
-    
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(18, 1fr);
-    gap: 20px;
-    position: fixed;
-    z-index: 10;
-    
-}
-
-.title{
-    grid-area: 1 / 1 / span 1 / span 3;
-    }
-    
-.subt{
-    grid-area: 2 / 1 / span 1 / span 3;
-}
-
-.bio{
-    grid-area: 1 / 4 / span 3 / span 3;
-}
-
-.contact{
-    grid-area: 1 / 8 / span 1 / span 3;
-}
-
-.availability{
-    grid-area: 2 / 8 / span 1 / span 3;
-}
-
-.time-place{
-    grid-area: 1 / 11 / span 2 / span 2;
-    text-align: right;
-}
-
-#time{
+/* #time{
     font-size: 20px;
-}
+} */
 
 /* MAIN */
 
@@ -174,47 +252,57 @@ a.linkItem:active {
 
 @media only screen and (max-width: 750px){
 
+    .bio, .contact-1, .contact-2, .availability, .place, .time-of-day{
+        font-size: 18px;
+    }
+    .navbutton-1, .navbutton-2 {
+    
+        font-size: 50px;
+    }
+
 }
 
 @media only screen and (max-width: 480px){
 
-    .navBar {
+    .navbutton-1, .navbutton-2 {
     
-        font-size: 16px;
-        
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        gap: 20px;
-        position: fixed;
-        z-index: 10;
-        
+        font-size: 36px;
     }
-    
-    .title{
-        grid-area: 1 / 1 / span 1 / span 1;
-        }
-        
-    .subt{
-        grid-area: 2 / 1 / span 1 / span 1;
-    
+
+    .bio-grid{
+        align-items:normal;
+    }
+
+    .bio, .contact-1, .contact-2, .availability, .place, .time-of-day{
+        font-size: 16px;
     }
     
     .bio{
-        grid-area: 3 / 1 / span 2 / span 2;
+        grid-area: 2 / 1 / span 4 / span 4;
     }
-    
-    .contact{
-        grid-area: 5 / 1 / span 1 / span 2;
+
+    .contact-1 {
+        grid-area: 7 / 1 / span 1 / span 2;
+        text-align: left;
     }
-    
+
+    .contact-2 {
+
+        grid-area: 7 / 3 / span 1 / span 2;
+        
+    }
+
     .availability{
-        grid-area: 6 / 1 / span 1 / span 1;
+        grid-area: 9/1/span 2/span 2
     }
-    
-    .time-place{
-        grid-area: 6 / 2 / span 1 / span 1;
-        text-align: right;
+
+    .place{
+        grid-area: 9 / 3 / span 1 / span 2;
+    }
+
+
+    .time-of-day{
+        grid-area: 10 / 3 / span 1 / span 2;
     }
  
 }

@@ -1,19 +1,5 @@
 
-// barba.init({
-//   transitions: [{
-//     name: 'default-transition',
-//     leave() {
-//       gsap.to(".main, .bioContainer", {duration:2, opacity: 0});
-//       gsap.to(".main, .bioContainer", {duration:1, x:-600, ease: "power3"});
-//       // create your stunning leave animation here
-//     },
-//     enter() {
-//       gsap.from(".main, .bioContainer", {duration:2, opacity: 0});
-//       gsap.from(".main, .bioContainer", {duration:1, x:600, ease: "power3"});
-//       // create your amazing enter animation here
-//     }
-//   }]
-// });
+//**** Time ****
 
 setInterval(()=>{
   const time = document.querySelector("#time");
@@ -39,3 +25,37 @@ setInterval(()=>{
  }
 
  )
+
+// **** Follow Mouse ****
+ 
+     TweenMax.from(".cursor-follow", 2, {
+         delay: 1,
+         opacity: 0
+     });
+
+     follower = document.querySelector('.cursor-follow');
+
+     posX = 0;
+     posY = 0;
+     mouseX = 0;
+     mouseY = 0;
+
+     TweenMax.to({}, 0.016, {
+         repeat: -1,
+         onRepeat: function () {
+             posX += (mouseX - posX) / 9;
+             posY += (mouseY - posY) / 9;
+
+             TweenMax.set(follower, {
+                 css: {
+                     left: posX - 40,
+                     top: posY - 40,
+                 }
+             });
+         }
+     });
+
+     document.addEventListener("mousemove", function (e) {
+     mouseX = e.pageX;
+     mouseY = e.pageY;
+ });
