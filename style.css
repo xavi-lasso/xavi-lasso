@@ -198,10 +198,10 @@ img {
 
 .cursor-follow {
     position: absolute;
-    background: url(images/xavi-blue-bg.jpeg) no-repeat 50% 50%;
+    background: url(images/xavi-blue-bg.jpg) no-repeat 50% 50%;
     background-size: cover;
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 500px;
     z-index: 0;
  
     user-select: none;
