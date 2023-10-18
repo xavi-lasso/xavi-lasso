@@ -22,7 +22,6 @@
     --color-accent: #ffffff;
   }
   
-
 * {
   margin: 0;
   padding: 0;
@@ -37,6 +36,35 @@ html, body {
     /* height: 100%;      */
     overflow-x: hidden;
     
+}
+
+p{
+    font-family: var(--main-font);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 0.15px; 
+}
+
+a{
+    text-decoration: none;
+    color:var(--color);
+    transition: color 0.5s;
+    font-family: var(--main-font);
+    background: none;
+}
+
+a:hover {
+    color: var(--color-accent);
+    transition: color 0.5s;
+}
+
+a:active {
+    color: var(--color-accent);
+    transition: color 0.5s;
+}
+
+img {
+    width: 100%;
 }
 
 .canvas{
@@ -63,30 +91,6 @@ html, body {
     z-index: 10;
 }
 
-.projects{
-    width: 100%;
-    padding:20px; 
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-
-}
-img {
-
-    width: 100%;
-/* object-fit: cover; */
-/* object-position: center; */
-/* overflow: hidden; */
-
-}
-
-.project-image{
-    
-    
-    border-radius: 10px;
-
-}
-
 .navbutton-1{
     font-family:'PP-Monument-Extended-Black';
     font-size: 60px;
@@ -95,6 +99,7 @@ img {
     background: none;
     
 }
+
 .navbutton-2{
     font-family:'PP-Monument-Extended-Black';
     font-size: 60px;
@@ -103,6 +108,28 @@ img {
     z-index: 10;
     background: none;
 }
+
+/* PROJECTS */
+
+.projects{
+    width: 100%;
+    padding:20px; 
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.project-image{
+    
+    
+    border-radius: 10px;
+
+}
+
+/* ABOUT */
 
 .bio-grid{
     width: 100%;
@@ -171,7 +198,7 @@ img {
 
 .cursor-follow {
     position: absolute;
-    background: url(images/xavi-profile-v01.jpg) no-repeat 50% 50%;
+    background: url(images/xavi-blue-bg.jpeg) no-repeat 50% 50%;
     background-size: cover;
     width: 300px;
     height: 400px;
@@ -181,55 +208,12 @@ img {
     pointer-events: none;
     transform: translate(5px, 5px);
 }
-p{
-    font-family: var(--main-font);
-    font-size: 24px;
-    line-height: 1.2;
-    letter-spacing: 0.15px; 
+
+.foot{
+    height: 10px;
 }
 
-a{
-    text-decoration: none;
-    color:var(--color);
-    transition: color 0.5s;
-    font-family: var(--main-font);
-    background: none;
-}
-
-
-a:hover {
-    color: var(--color-accent);
-    transition: color 0.5s;
-}
-
-a:active {
-    color: var(--color-accent);
-    transition: color 0.5s;
-}
-
-
-/* #time{
-    font-size: 20px;
-} */
-
-/* MAIN */
-
-
-a.linkItem{
-    font-size: 20px;
-    font-family: var(--main-font);
-    color: var(--color);
-  }
-
-a.linkItem:hover {
-    color: var(--color-accent);
-    transition: color 0.3s;
-}
-a.linkItem:active {
-    color: var(--color-accent);
-    transition: color 0.3s;
-}
-
+/* BARBA ANIMATION */
 
 /* LIGHT-DARK MODE */
 
@@ -247,8 +231,6 @@ a.linkItem:active {
         --color:#1a1a1a;
     }
 } */
-
-
 
 @media only screen and (max-width: 750px){
 

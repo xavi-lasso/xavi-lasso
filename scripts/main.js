@@ -48,8 +48,8 @@ setInterval(()=>{
 
              TweenMax.set(follower, {
                  css: {
-                     left: posX - 40,
-                     top: posY - 40,
+                     left: posX - 150,
+                     top: posY - 200,
                  }
              });
          }
