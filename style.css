@@ -1,13 +1,13 @@
 /* FUNDAMENTAL */
 
 @font-face {
-    font-family: 'PP-Monument-Extended';
-    src: url('fonts/PPMonumentExtended-Regular.woff2') format('woff2');
+    font-family: 'PPNeueMontreal-Regular';
+    src: url('fonts/PPNeueMontreal-Regular.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'PP-Monument-Extended-Bold';
-    src: url('fonts/PPMonumentExtended-Bold.woff2') format('woff2');
+    font-family: 'PPNeueMontreal-Medium';
+    src: url('fonts/PPNeueMontreal-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -16,8 +16,8 @@
 }
 
 :root {
-    --main-font: PP-Monument-Extended;
-    --bg-color: #c9c9c9;
+    --main-font: PPNeueMontreal-Medium;
+    --bg-color: #c5c5c5;
     --color: #111111;
     --color-accent: #ffffff;
   }
@@ -67,8 +67,16 @@ img {
     width: 100%;
 }
 
+video {
+    width: 100%;
+}
+
+video::-webkit-media-controls {
+    display:none !important;
+}
+
 .canvas{
-    max-width: 1600px;
+    /* max-width: 1600px; */
     margin:0 auto;
 }
 
@@ -76,38 +84,64 @@ img {
 
 .nav{
     
-    font-size: 16px;
-    letter-spacing: 0.3px;
-    padding:30px 20px 20px 20px;
-    height:120px;
+    
+    padding:30px 30px 30px 30px;
+    height:100vh;
     width: 100%;
     
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     row-gap: 20px;
-    align-items: center;
     background: none;
     z-index: 10;
+    position: fixed;
+
+}
+
+.navbuttons{
+    
+    font-size: 50px;
+    z-index: 10;
+    background: none;
 }
 
 .navbutton-1{
-    font-family:'PP-Monument-Extended-Black';
-    font-size: 60px;
-    grid-area: 1 / 1 / span 2 / span 2;
-    z-index: 10;
-    background: none;
-    
+    grid-area: 1 / 1 / span 1 / span 1;  
 }
 
-.navbutton-2{
-    font-family:'PP-Monument-Extended-Black';
-    font-size: 60px;
-    grid-area: 1 / 2 / span 2 / span 2;
+.navbutton-2{ 
+    grid-area: 1 / 2 / span 1 / span 1; 
     text-align: right;
-    z-index: 10;
-    background: none;
 }
+
+.navbutton-3{ 
+    grid-area: 8 / 1 / span 1 / span 1;
+    align-self: flex-end; 
+}
+
+.navbutton-4{ 
+    grid-area: 8 / 2 / span 1 / span 1; 
+    text-align: right;
+    align-self: flex-end;
+}
+
+.cover{
+    display:flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner{
+    padding:30px 180px 80px 180px;
+    font-size: 50px;
+    text-align: center;
+}
+
+
+
 
 /* PROJECTS */
 
@@ -117,29 +151,55 @@ img {
     width: 100%;
     align-items: center;
     justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 180px;
+    gap: 40px;
 
 }
 
-
-
 .project-image{
-    
-    
+  
     border-radius: 10px;
 
+}
+
+.project-thumb-1{
+    grid-area: 1 / 1 / span 1 / span 1; 
+}
+
+.project-thumb-2{
+    grid-area: 1 / 2 / span 1 / span 1; 
+}
+
+.project-thumb-3{
+    grid-area: 2 / 1 / span 1 / span 1; 
+}
+
+.project-thumb-4{
+    grid-area: 2 / 2 / span 1 / span 1; 
+}
+
+.client {
+
+    padding-top:5px;
+    font-family: 'PPNeueMontreal-Medium';
+    font-size: 30px;
+  
 }
 
 /* ABOUT */
 
 .bio-grid{
+    height: 100vh;
     width: 100%;
-    padding:20px; 
-    height: calc(100vh - 120px) !important;
+    padding:30px; 
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    row-gap: 20px;
-    align-items: normal;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 30px;
+    align-items: center;
     justify-content: center;
     background: none;
     z-index: 10;
@@ -148,72 +208,18 @@ img {
 
 .bio{
 
-    grid-area: 4 / 1 / span 4 / span 2 ;
+    grid-area: 2 / 2 / span 4 / span 2 ;
     font-family: var(--main-font);
-    font-size: 24px;
+    font-size: 36px;
     line-height: 1.2;
     letter-spacing: 0.15px; 
     background: none;
     z-index: 10;
+    
 }
-
-.contact-1{
-    grid-area: 4 / 3 / span 2 / span 1 ; 
-    text-align: right;
-    font-size: 24px;
-    z-index: 10;
-    background: none;
+.bio-image{
+    grid-area: 2 / 4 / span 4 / span 2 ;
 }
-
-.contact-2{
-    grid-area: 4 / 4 / span 2 / span 1 ; 
-    text-align: right;
-    font-size: 24px;
-    z-index: 10;
-    background: none;
-}
-
-.availability{
-    grid-area: 10 / 1 / span 1 / span 2;
-    font-size: 24px;
-    z-index: 10;
-    background: none;
-}
-
-.place{
-    grid-area: 10 / 3 / span 1 / span 1;
-    text-align: right;
-    font-size: 24px;
-    z-index: 10;
-    background: none;
-}
-
-.time-of-day{
-    grid-area: 10 / 4 / span 1 / span 1 ;
-    text-align: right;
-    font-size: 24px;
-    z-index: 10;
-    background: none;
-}
-
-.cursor-follow {
-    position: absolute;
-    background: url(images/xavi-blue-bg.jpg) no-repeat 50% 50%;
-    background-size: cover;
-    width: 400px;
-    height: 500px;
-    z-index: 0;
- 
-    user-select: none;
-    pointer-events: none;
-    transform: translate(5px, 5px);
-}
-
-.foot{
-    height: 10px;
-}
-
-/* BARBA ANIMATION */
 
 /* LIGHT-DARK MODE */
 
