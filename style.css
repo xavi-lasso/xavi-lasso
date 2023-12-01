@@ -85,7 +85,7 @@ video::-webkit-media-controls {
 .nav{
     
     
-    padding:30px 30px 30px 30px;
+    padding:30px;
     height:100vh;
     width: 100%;
     
@@ -108,6 +108,7 @@ video::-webkit-media-controls {
 
 .navbutton-1{
     grid-area: 1 / 1 / span 1 / span 1;  
+    
 }
 
 .navbutton-2{ 
@@ -240,57 +241,61 @@ video::-webkit-media-controls {
 
 @media only screen and (max-width: 750px){
 
-    .bio, .contact-1, .contact-2, .availability, .place, .time-of-day{
-        font-size: 18px;
-    }
-    .navbutton-1, .navbutton-2 {
-    
-        font-size: 50px;
-    }
-
 }
 
 @media only screen and (max-width: 480px){
 
-    .navbutton-1, .navbutton-2 {
+    .navbuttons {
     
-        font-size: 30px;
-    }
-
-    .bio-grid{
-        align-items:normal;
-    }
-
-    .bio, .contact-1, .contact-2, .availability, .place, .time-of-day{
-        font-size: 16px;
-    }
-    
-    .bio{
-        grid-area: 2 / 1 / span 4 / span 4;
-    }
-
-    .contact-1 {
-        grid-area: 7 / 1 / span 1 / span 2;
-        text-align: left;
-    }
-
-    .contact-2 {
-
-        grid-area: 7 / 3 / span 1 / span 2;
+        font-size: 36px;
         
     }
 
-    .availability{
-        grid-area: 9/1/span 2/span 2
+    .banner{
+        padding:30px 30px 80px 30px;
+        font-size: 30px;
+        text-align: center;
     }
 
-    .place{
-        grid-area: 9 / 3 / span 1 / span 2;
+    .projects{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        padding: 30px 30px 120px 30px;
+        gap: 30px;
     }
 
-
-    .time-of-day{
-        grid-area: 10 / 3 / span 1 / span 2;
+    .project-thumb-1{
+        grid-area: 1 / 1 / span 1 / span 1; 
     }
+    
+    .project-thumb-2{
+        grid-area: 2 / 1 / span 1 / span 1; 
+    }
+    
+    .project-thumb-3{
+        grid-area: 3 / 1 / span 1 / span 1; 
+    }
+    
+    .project-thumb-4{
+        grid-area: 4 / 1 / span 1 / span 1; 
+    }
+
+    .bio-grid{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+    }
+    .bio-image{
+        grid-area: 1 / 1 span 1 / span 1;
+    }
+    .bio{
+        grid-area: 2 / 1 / span 1 / span 1;
+        font-size: 18px;
+    }
+
+    
+
  
 }
