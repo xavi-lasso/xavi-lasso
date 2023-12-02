@@ -281,17 +281,16 @@ video::-webkit-media-controls {
     }
 
     .bio-grid{
-        grid-template-columns: repeat(1, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 30px;
-        align-items: center;
-        justify-content: center;
+
+        display: flex;
+        flex-direction: column;
+
     }
+
     .bio-image{
-        grid-area: 1 / 1 span 1 / span 1;
+        border-radius: 10px;
     }
     .bio{
-        grid-area: 2 / 1 / span 1 / span 1;
         font-size: 18px;
     }
 
