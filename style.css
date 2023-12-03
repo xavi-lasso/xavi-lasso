@@ -193,14 +193,15 @@ video::-webkit-media-controls {
 /* ABOUT */
 
 .bio-grid{
-    height: 100vh;
+    
     width: 100%;
-    padding:30px; 
+    padding: 30px;
+    padding-top: 10%;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 30px;
-    align-items: center;
+    grid-template-columns: repeat(1, 500px);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 40px;
+    /* align-items: center; */
     justify-content: center;
     background: none;
     z-index: 10;
@@ -209,17 +210,19 @@ video::-webkit-media-controls {
 
 .bio{
 
-    grid-area: 2 / 2 / span 4 / span 2 ;
+    grid-area: 2 / 1 / span 1 / span 1 ;
     font-family: var(--main-font);
-    font-size: 36px;
+    font-size: 24px;
     line-height: 1.2;
     letter-spacing: 0.15px; 
     background: none;
     z-index: 10;
+    text-align: center;
     
 }
 .bio-image{
-    grid-area: 2 / 4 / span 4 / span 2 ;
+    grid-area: 1 / 1 / span 1 / span 1 ;
+    border-radius: 10px;
 }
 
 /* LIGHT-DARK MODE */
@@ -293,7 +296,7 @@ video::-webkit-media-controls {
         border-radius: 10px;
     }
     .bio{
-        font-size: 18px;
+        font-size: 24px;
     }
 
     
