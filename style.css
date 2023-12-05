@@ -90,8 +90,9 @@ video::-webkit-media-controls {
     display: flex;
     flex-direction: row;
     border-radius: 40px;
-    background-color: #ffffff50;
+    background-color: #ffffff80;
     backdrop-filter: blur(10px);
+    backdrop-filter: invert(100%);
     align-items: center;
     justify-content: space-between;
     left: calc(50vw - 300px);
@@ -104,6 +105,13 @@ video::-webkit-media-controls {
 
 .button{
     font-size: 30px;
+}
+
+.icon{
+    background: none;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
 .cover{
