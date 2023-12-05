@@ -82,49 +82,28 @@ video::-webkit-media-controls {
 
 /* NAVIGATION */
 
-.nav{
-    
-    
-    padding:30px;
-    height:100vh;
-    width: 100%;
-    
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    row-gap: 20px;
-    background: none;
-    z-index: 10;
+.nav-bottom{
     position: fixed;
-
-}
-
-.navbuttons{
+    bottom: 70px;
+    width: 600px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 40px;
+    background-color: #ffffff50;
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: space-between;
+    left: calc(50vw - 300px);
+    margin: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    z-index: 333;
     
-    font-size: 50px;
-    z-index: 10;
-    background: none;
 }
 
-.navbutton-1{
-    grid-area: 1 / 1 / span 1 / span 1;  
-    
-}
-
-.navbutton-2{ 
-    grid-area: 1 / 2 / span 1 / span 1; 
-    text-align: right;
-}
-
-.navbutton-3{ 
-    grid-area: 8 / 1 / span 1 / span 1;
-    align-self: flex-end; 
-}
-
-.navbutton-4{ 
-    grid-area: 8 / 2 / span 1 / span 1; 
-    text-align: right;
-    align-self: flex-end;
+.button{
+    font-size: 30px;
 }
 
 .cover{
@@ -157,12 +136,7 @@ video::-webkit-media-controls {
     grid-template-rows: repeat(2, 1fr);
     padding: 180px;
     gap: 40px;
-
-}
-
-.project-image{
-  
-    border-radius: 10px;
+    z-index: 20;
 
 }
 
@@ -242,8 +216,46 @@ video::-webkit-media-controls {
     }
 } */
 
+@media only screen and (max-width: 1100px){
+
+    .banner{
+        padding:30px 80px 80px 80px;
+        font-size: 40px;
+        justify-content: center;
+        text-align: center;
+
+    }
+
+    .projects{
+        grid-template-columns: repeat(1, 600px);
+        grid-template-rows: repeat(4, 1fr);
+        padding: 30px 30px 120px 30px;
+        gap: 30px;
+    }
+
+    .project-thumb-1{
+        grid-area: 1 / 1 / span 1 / span 1; 
+    }
+    
+    .project-thumb-2{
+        grid-area: 2 / 1 / span 1 / span 1; 
+    }
+    
+    .project-thumb-3{
+        grid-area: 3 / 1 / span 1 / span 1; 
+    }
+    
+    .project-thumb-4{
+        grid-area: 4 / 1 / span 1 / span 1; 
+    }
+
+}
+
 @media only screen and (max-width: 750px){
 
+    .projects{
+        grid-template-columns: repeat(1, 450px);
+    }
 }
 
 @media only screen and (max-width: 480px){
