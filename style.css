@@ -1,22 +1,22 @@
 /* FUNDAMENTAL */
 
 @font-face {
-    font-family: 'PPNeueMontreal-Regular';
-    src: url('fonts/PPNeueMontreal-Regular.woff2') format('woff2');
+    font-family: 'PPNeueMachina-Regular';
+    src: url('fonts/PPNeueMachina-PlainRegular.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'PPNeueMontreal-Medium';
-    src: url('fonts/PPNeueMontreal-Medium.woff2') format('woff2');
+    font-family: 'PPMonumentExtended-Light';
+    src: url('fonts/PPMonumentExtended-Light.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: 'PP-Monument-Extended-Black';
-    src: url('fonts/PPMonumentExtended-Black.woff2') format('woff2');
+    font-family: 'PP-NeueMachina-Light';
+    src: url('fonts/PPNeueMachina-PlainLight.woff2') format('woff2');
 }
 
 :root {
-    --main-font: PPNeueMontreal-Medium;
+    --main-font: PPMonumentExtended-Light;
     --bg-color: #c5c5c5;
     --color: #111111;
     --color-accent: #ffffff;
@@ -38,6 +38,8 @@ html, body {
     
 }
 
+
+
 p{
     font-family: var(--main-font);
     font-size: 24px;
@@ -56,11 +58,15 @@ a{
 a:hover {
     color: var(--color-accent);
     transition: color 0.5s;
+
 }
 
-a:active {
-    color: var(--color-accent);
-    transition: color 0.5s;
+.contact{
+    color: #b7ff00;
+}
+
+.contact:hover{
+
 }
 
 img {
@@ -76,99 +82,96 @@ video::-webkit-media-controls {
 }
 
 .canvas{
-    /* max-width: 1600px; */
+    max-width: 1600px;
     margin:0 auto;
+    padding: 30px;
 }
 
 /* NAVIGATION */
 
-.nav-bottom{
-    position: fixed;
-    bottom: 70px;
-    width: 600px;
-    height: 70px;
-    display: flex;
-    flex-direction: row;
-    border-radius: 40px;
-    background-color: #ffffff80;
-    backdrop-filter: blur(10px);
-    backdrop-filter: invert(100%);
-    align-items: center;
-    justify-content: space-between;
-    left: calc(50vw - 300px);
-    margin: auto;
-    padding-left: 40px;
-    padding-right: 40px;
-    z-index: 333;
-    
+
+
+.nav-top{
+
+    width: 100%;
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+
 }
 
 .button{
-    font-size: 30px;
+    font-size: 50px;
 }
 
-.icon{
-    background: none;
-    width: 30px;
-    align-items: center;
-    justify-content: center;
+.button-1{
+    grid-area: 1 / 1 / span 1 / span 1; 
+}
+
+.button-2{
+    grid-area: 1 / 3 / span 1 / span 1; 
 }
 
 .cover{
-    display:flex;
-    height: 100vh;
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
+    padding-top: 30px;
+    /* border-radius: 15px; */
 }
 
 .banner{
     padding:30px 180px 80px 180px;
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
 }
-
-
-
 
 /* PROJECTS */
 
 .projects{
-    width: 100%;
-    padding:20px; 
-    width: 100%;
+    width: 100%; 
     align-items: center;
     justify-content: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    padding: 180px;
-    gap: 40px;
+    padding-top: 30px;
+    gap: 30px;
     z-index: 20;
 
+}
+
+.project-image{
+    /* border-radius: 10px; */
 }
 
 .project-thumb-1{
     grid-area: 1 / 1 / span 1 / span 1; 
 }
 
-.project-thumb-2{
-    grid-area: 1 / 2 / span 1 / span 1; 
+.client-1{
+    grid-area: 1 / 1 / span 1 / span 1;
+    z-index: 50;
 }
 
-.project-thumb-3{
+.project-thumb-2{
     grid-area: 2 / 1 / span 1 / span 1; 
 }
 
+.project-thumb-3{
+    grid-area: 3 / 1 / span 1 / span 1; 
+}
+
 .project-thumb-4{
-    grid-area: 2 / 2 / span 1 / span 1; 
+    grid-area: 4 / 1 / span 1 / span 1; 
 }
 
 .client {
 
+    /* text-transform: uppercase; */
     padding-top:5px;
-    font-family: 'PPNeueMontreal-Medium';
-    font-size: 30px;
+   
+    font-size: 20px;
   
 }
 
@@ -177,12 +180,11 @@ video::-webkit-media-controls {
 .bio-grid{
     
     width: 100%;
-    padding: 30px;
+    /* padding: 30px; */
     padding-top: 10%;
     display: grid;
-    grid-template-columns: repeat(1, 500px);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 40px;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
     /* align-items: center; */
     justify-content: center;
     background: none;
@@ -192,19 +194,41 @@ video::-webkit-media-controls {
 
 .bio{
 
-    grid-area: 2 / 1 / span 1 / span 1 ;
+    grid-area: 1 / 1 / span 1 / span 6 ;
     font-family: var(--main-font);
     font-size: 24px;
     line-height: 1.2;
     letter-spacing: 0.15px; 
     background: none;
     z-index: 10;
-    text-align: center;
+    text-align: left;
     
 }
 .bio-image{
-    grid-area: 1 / 1 / span 1 / span 1 ;
+    grid-area: 1 / 9 / span 1 / span 4 ;
     border-radius: 10px;
+}
+
+h2{
+    font-family: var(--main-font);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.clients-title{
+    grid-area: 3 / 1 / span 1 / span 6 ;
+}
+
+.clients-list{
+    grid-area: 4 / 1 / span 1 / span 6 ;
+}
+
+.services-title{
+    grid-area: 3 / 7 / span 1 / span 6 ;
+}
+
+.services-list{
+    grid-area: 4 / 7 / span 1 / span 6 ;
 }
 
 /* LIGHT-DARK MODE */
@@ -228,7 +252,7 @@ video::-webkit-media-controls {
 
     .banner{
         padding:30px 80px 80px 80px;
-        font-size: 40px;
+        font-size: 30px;
         justify-content: center;
         text-align: center;
 
@@ -268,10 +292,8 @@ video::-webkit-media-controls {
 
 @media only screen and (max-width: 480px){
 
-    .navbuttons {
-    
-        font-size: 36px;
-        
+    .button{
+        font-size: 40px;
     }
 
     .banner{

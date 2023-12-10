@@ -11,101 +11,143 @@ grid-area  */
 /* FUNDAMENTAL */
 
 @font-face {
-    font-family: 'PP-Monument-Extended';
-    src: url('fonts/PPMonumentExtended-Regular.woff2') format('woff2');
-
+    font-family: 'PPMonumentExtended-Light';
+    src: url('../fonts/PPMonumentExtended-Light.woff2') format('woff2');
 }
 
 :root {
-    --main-font: PP-Monument-Extended;
-    --bg-color: #B6B6B6;
-    --color: #FFFFFF;
-    --color-accent: #333333;
-
+    --main-font: PPMonumentExtended-Light;
+    --bg-color: #c5c5c5;
+    --color: #111111;
+    --color-accent: #ffffff;
   }
   
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background-color: var(--bg-color);
-  color: var(--color);
-  font-family: var(--main-font);
-  line-height: 1.2;
-}
-
-html, body {   
-    height: 100%;     
-    
-}
-
-h2{
-    font-family: var(--main-font);
-}
-
-p{
-    font-family: var(--main-font);
-    font-size: 24px;
-    line-height: 1.2;
-    letter-spacing: 0.15px; 
-}
-
-a{
-    text-decoration: none;
-    color:var(--color);
-    transition: color 0.3s;
-    font-family: var(--main-font);
-}
-
-
-a:hover {
-    color: var(--color-accent);
-    transition: color 0.3s;
-}
-
-a:active {
-    color: var(--color-accent);
-    transition: color 0.3s;
-}
-
-.contactLink {
-    color: var(--color-accent);
-}
-.contactLink:hover{
-    color: var(--color);
-}
-
-/* BODY */
-
-.canvas{
-    max-width: 2000px;
-    padding: 20px 50px 100px 50px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    
+  * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    /* min-height: 100vh;
-    min-height: 100dvh;
-
-    display: grid;
-    grid-template-rows: auto 1fr auto; */
-}
+    background-color: var(--bg-color);
+    color: var(--color);
+    font-family: var(--main-font);
+    line-height: 1.2;
+  }
+  
+  html, body {   
+      /* height: 100%;      */
+      overflow-x: hidden;
+      
+  }
+  
+  p{
+      font-family: var(--main-font);
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: 0.15px; 
+  }
+  
+  a{
+      text-decoration: none;
+      color:var(--color);
+      transition: color 0.5s;
+      font-family: var(--main-font);
+      background: none;
+  }
+  
+  a:hover {
+      color: var(--color-accent);
+      transition: color 0.5s;
+  
+  }
+  
+  a:current {
+      color: var(--color-accent);
+      transition: color 0.5s;
+      filter: blur(0px);
+  }
+  
+  img {
+      width: 100%;
+  }
+  
+  video {
+      width: 100%;
+  }
+  
+  video::-webkit-media-controls {
+      display:none !important;
+  }
+  
+  .canvas{
+      max-width: 1800px;
+      margin:0 auto;
+  }
 
 /* NAVIGATION */
 
-.navBar {
-    /* width: 312px; */
+.nav-top{
+    position: fixed;
+  
+    width: 100%;
     height: 80px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: #c5c5c5;
+    
+
     align-items: center;
+    justify-content: space-between;
+
+    padding-left: 40px;
+    padding-right: 40px;
+    z-index: 333;
+    
 }
-.navbutton {
-    font-family: var(--main-font);
-    font-size: 44px;
+
+.nav-bottom{
+    position: fixed;
+  
+    width: 100%;
+    height: 80px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: #c5c5c5;
+    bottom: 0;
+    
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 40px;
+    padding-right: 40px;
+    z-index: 333;
+    
+}
+
+.button{
+    font-size: 50px;
+}
+
+.button-1{
+    grid-area: 1 / 1 / span 1 / span 1; 
+}
+
+.button-2{
+    grid-area: 1 / 3 / span 1 / span 1; 
+}
+
+.button-3{
+    grid-area: 1 / 5 / span 1 / span 1; 
+}
+
+.button-4{
+    grid-area: 1 / 10 / span 1 / span 1; 
+    text-align: right;
+}
+
+.button-5{
+    grid-area: 1 / 12 / span 1 / span 1; 
+    text-align: right;
 }
 
 .intro{
@@ -121,11 +163,13 @@ a:active {
     margin: 100px 0 100px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding: 40px;
 }
 
 .project-video{
     margin-top:50px;
     margin-bottom: 50px;
+    padding: 40px;
 }
 
 .project-image{
