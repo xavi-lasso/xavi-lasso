@@ -231,6 +231,12 @@ h2{
     grid-area: 4 / 7 / span 1 / span 6 ;
 }
 
+.footer{
+padding-top: 50px;
+font-size: 12px;
+text-align: center;
+jus
+}
 /* LIGHT-DARK MODE */
 
 /* @media (prefers-color-scheme: dark) {
