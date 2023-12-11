@@ -120,6 +120,10 @@ video::-webkit-media-controls {
     /* border-radius: 15px; */
 }
 
+.video-embed{
+    border-radius: 10px;
+}
+
 .banner{
     padding:30px 180px 80px 180px;
     font-size: 30px;
@@ -142,7 +146,7 @@ video::-webkit-media-controls {
 }
 
 .project-image{
-    /* border-radius: 10px; */
+    border-radius: 10px;
 }
 
 .project-thumb-1{
@@ -194,7 +198,7 @@ video::-webkit-media-controls {
 
 .bio{
 
-    grid-area: 1 / 1 / span 1 / span 6 ;
+    grid-area: 1 / 5 / span 1 / span 8 ;
     font-family: var(--main-font);
     font-size: 24px;
     line-height: 1.2;
@@ -205,7 +209,7 @@ video::-webkit-media-controls {
     
 }
 .bio-image{
-    grid-area: 1 / 9 / span 1 / span 4 ;
+    grid-area: 1 / 1 / span 1 / span 3 ;
     border-radius: 10px;
 }
 
@@ -216,19 +220,19 @@ h2{
 }
 
 .clients-title{
-    grid-area: 3 / 1 / span 1 / span 6 ;
+    grid-area: 5 / 5 / span 1 / span 6 ;
 }
 
 .clients-list{
-    grid-area: 4 / 1 / span 1 / span 6 ;
+    grid-area: 6 / 5 / span 1 / span 6 ;
 }
 
 .services-title{
-    grid-area: 3 / 7 / span 1 / span 6 ;
+    grid-area: 2 / 5 / span 1 / span 6 ;
 }
 
 .services-list{
-    grid-area: 4 / 7 / span 1 / span 6 ;
+    grid-area: 3 / 5 / span 1 / span 6 ;
 }
 
 .footer{
