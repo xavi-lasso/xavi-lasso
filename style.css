@@ -1,18 +1,8 @@
 /* FUNDAMENTAL */
 
 @font-face {
-    font-family: 'PPNeueMachina-Regular';
-    src: url('fonts/PPNeueMachina-PlainRegular.woff2') format('woff2');
-}
-
-@font-face {
     font-family: 'PPMonumentExtended-Light';
     src: url('fonts/PPMonumentExtended-Light.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'PP-NeueMachina-Light';
-    src: url('fonts/PPNeueMachina-PlainLight.woff2') format('woff2');
 }
 
 :root {
@@ -124,12 +114,6 @@ video::-webkit-media-controls {
     border-radius: 10px;
 }
 
-.banner{
-    padding:30px 180px 80px 180px;
-    font-size: 30px;
-    text-align: center;
-}
-
 /* PROJECTS */
 
 .projects{
@@ -172,9 +156,7 @@ video::-webkit-media-controls {
 
 .client {
 
-    /* text-transform: uppercase; */
-    padding-top:5px;
-   
+    padding-top:5px;   
     font-size: 20px;
   
 }
@@ -239,7 +221,6 @@ h2{
 padding-top: 50px;
 font-size: 12px;
 text-align: center;
-jus
 }
 /* LIGHT-DARK MODE */
 
@@ -258,46 +239,8 @@ jus
     }
 } */
 
-@media only screen and (max-width: 1100px){
-
-    .banner{
-        padding:30px 80px 80px 80px;
-        font-size: 30px;
-        justify-content: center;
-        text-align: center;
-
-    }
-
-    .projects{
-        grid-template-columns: repeat(1, 600px);
-        grid-template-rows: repeat(4, 1fr);
-        padding: 30px 30px 120px 30px;
-        gap: 30px;
-    }
-
-    .project-thumb-1{
-        grid-area: 1 / 1 / span 1 / span 1; 
-    }
-    
-    .project-thumb-2{
-        grid-area: 2 / 1 / span 1 / span 1; 
-    }
-    
-    .project-thumb-3{
-        grid-area: 3 / 1 / span 1 / span 1; 
-    }
-    
-    .project-thumb-4{
-        grid-area: 4 / 1 / span 1 / span 1; 
-    }
-
-}
-
 @media only screen and (max-width: 750px){
 
-    .projects{
-        grid-template-columns: repeat(1, 450px);
-    }
 }
 
 @media only screen and (max-width: 480px){
@@ -306,17 +249,11 @@ jus
         font-size: 40px;
     }
 
-    .banner{
-        padding:30px 30px 80px 30px;
-        font-size: 30px;
-        text-align: center;
-    }
-
     .projects{
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(4, 1fr);
-        padding: 30px 30px 120px 30px;
-        gap: 30px;
+        
+        gap: 20px;
     }
 
     .project-thumb-1{
