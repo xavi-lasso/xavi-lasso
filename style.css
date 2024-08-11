@@ -102,12 +102,12 @@ video::-webkit-media-controls {
 }
 
 .cover{
-    padding-top: 30px;
+    /* padding-top: 30px; */
     /* border-radius: 15px; */
 }
 
 .video-embed{
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 /* PROJECTS */
