@@ -1,48 +1,40 @@
 /* FUNDAMENTAL */
 
 @font-face {
-    font-family: 'PPMonument';
+    font-family: 'PPMonumentExtended-Light';
     src: url('fonts/PPMonumentExtended-Light.woff2') format('woff2');
 }
 
-@font-face {
-    font-family: 'PPMori-Regular';
-    src: url('fonts/PPMori-Regular.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'PPMori-SemiBold';
-    src: url('fonts/PPMori-SemiBold.woff2') format('woff2');
-}
 :root {
-    --main-font: PPMonument;
-    --bg-color: #000000;
-    --color: #ffffff;
-    --color-accent: #ff5e00;
+    --main-font: PPMonumentExtended-Light;
+    --bg-color: #c5c5c5;
+    --color: #111111;
+    --color-accent: #ffffff;
   }
   
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* background-color: var(--bg-color); */
+  background-color: var(--bg-color);
   color: var(--color);
   font-family: var(--main-font);
   line-height: 1.2;
-  /* overflow: hidden; */
 }
 
-html{   
+html, body {   
     /* height: 100%;      */
+    overflow-x: hidden;
     
 }
 
-body{
-    background: url(images/thumbs/thumb-laue.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
+
+p{
+    font-family: var(--main-font);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 0.15px; 
 }
 
 a{
@@ -60,28 +52,40 @@ a:hover {
 }
 
 .contact{
-    /* color: var(--color-accent); */
-    text-decoration: underline;
+    color: #b7ff00;
+}
+
+img {
+    width: 100%;
+}
+
+video {
+    width: 100%;
+}
+
+video::-webkit-media-controls {
+    display:none !important;
 }
 
 .canvas{
     max-width: 100%;
-    margin: 0 auto;
+    margin:0 auto;
     /* padding: 30px; */
 }
 
-
-
 /* NAVIGATION */
+
+
 
 .nav-top{
 
     width: 100%;
     height: 100px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    /* gap: 30px; */
-    padding:20px;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 50px;
 
     position: fixed;
     background: none;
@@ -97,8 +101,65 @@ a:hover {
 }
 
 .button-2{
-    grid-area: 1 / 4 / span 1 / span 1; 
-    /* text-align: right; */
+    grid-area: 1 / 3 / span 1 / span 1; 
+}
+
+.cover-img{
+    /* padding-top: 30px; */
+    /* border-radius: 15px; */
+    height: 100vh;
+    width: 100%;
+}
+
+.video-embed{
+    /* border-radius: 10px; */
+}
+
+/* PROJECTS */
+
+.projects{
+    width: 100%; 
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding-top: 30px;
+    gap: 30px;
+    z-index: 20;
+
+}
+
+.project-image{
+    border-radius: 10px;
+}
+
+.project-thumb-1{
+    grid-area: 1 / 1 / span 1 / span 1; 
+}
+
+.client-1{
+    grid-area: 1 / 1 / span 1 / span 1;
+    z-index: 50;
+}
+
+.project-thumb-2{
+    grid-area: 2 / 1 / span 1 / span 1; 
+}
+
+.project-thumb-3{
+    grid-area: 3 / 1 / span 1 / span 1; 
+}
+
+.project-thumb-4{
+    grid-area: 4 / 1 / span 1 / span 1; 
+}
+
+.client {
+
+    padding-top:5px;   
+    font-size: 20px;
+  
 }
 
 /* ABOUT */
@@ -106,12 +167,10 @@ a:hover {
 .bio-grid{
     
     width: 100%;
-    height: 100vh;
     /* padding: 30px; */
     padding-top: 10%;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8,1fr);
     gap: 30px;
     /* align-items: center; */
     justify-content: center;
@@ -122,9 +181,9 @@ a:hover {
 
 .bio{
 
-    grid-area: 4 / 7 / span 1 / span 4 ;
+    grid-area: 1 / 5 / span 1 / span 8 ;
     font-family: var(--main-font);
-    font-size: 17px;
+    font-size: 24px;
     line-height: 1.2;
     letter-spacing: 0.15px; 
     background: none;
@@ -132,8 +191,38 @@ a:hover {
     text-align: left;
     
 }
+.bio-image{
+    grid-area: 1 / 1 / span 1 / span 3 ;
+    border-radius: 10px;
+}
 
+h2{
+    font-family: var(--main-font);
+    font-size: 20px;
+    font-weight: 400;
+}
 
+.clients-title{
+    grid-area: 5 / 5 / span 1 / span 6 ;
+}
+
+.clients-list{
+    grid-area: 6 / 5 / span 1 / span 6 ;
+}
+
+.services-title{
+    grid-area: 2 / 5 / span 1 / span 6 ;
+}
+
+.services-list{
+    grid-area: 3 / 5 / span 1 / span 6 ;
+}
+
+.footer{
+padding-top: 50px;
+font-size: 12px;
+text-align: center;
+}
 /* LIGHT-DARK MODE */
 
 /* @media (prefers-color-scheme: dark) {
