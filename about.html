@@ -5,6 +5,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Xavi Works - Xavi</title>
+        <meta name="view-transition" content="same-origin" />
         <link href="style.css" rel="stylesheet" type="text/css"/> 
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -15,48 +16,52 @@
 
     <body class="canvas">
 
-        <div class="nav-top">
+        <div class="fixed-grid-x">
 
-            <a class="button button-1" href="about.html">Xavi</a>
-            <a class="button button-2" href="index.html">Works</a>
-    
+            <a class="nav-button button-xavi" href="about.html">Xavi</a>
+            <a class="nav-button button-works" href="index.html">Works</a>
+
+            <p class="bio-text">
+                Xavi (Xavier Peñaherrera Lasso) is an artist and designer making images, videos, and objects with 3D. Inspired by nature’s beauty, driven by the desire to evoke that which is beyond words.            
+            </p>
+
+            <div class="services">
+                <h3>Services</h3>
+                <p class="list">
+                    3D Design<br>
+                    Art Direction<br>
+                    Motion Design<br>
+                    Creative Direction<br>
+                    Procedural Setups<br>
+                    R&D
+                </p>
+            </div>
+
+            <div class="clients">
+                <h3>Selected Clients</h3>
+                <p class="list">
+                Australian Open<br>
+                Kelly Wearstler<br>
+                Rendition Studio<br>
+                Mecca Beauty<br>
+                Xochi<br>
+                Fundación Telefónica
+                </p>
+            </div>
+
+            <p class="contact">
+                <a class="button-contact contact-1" href="mailto:xavierplasso@gmail.com" target="_blank">Email</a>  
+                <a class="button-contact contact-2" href="https://www.instagram.com/xavipl__/" target="_blank">Insta</a>  
+                <a class="button-contact contact-3" href="https://www.linkedin.com/in/xavilasso/" target="_blank">LinkedIn</a>
+            </p>
+
         </div>
-    
-          <!-- <div class="nav-bottom">
-    
-            <a class="button button-4" href="mailto:xavi@xavi.works" target="_blank">Mail</a>
-            <a class="button button-5" href="https://www.instagram.com/xavi_lasso/" target="_blank">Insta</a>
-          </div> -->
 
-        <main class="main">
-
-            <div class="bio-grid">
-
-                <!-- <img class="bio-image" src="images/Xavi_BlueBG.jpeg" alt=""> -->
-
-                <div class="bio">
-
-                    Xavier Peñaherrera Lasso is an artist and designer who uses CGI to create visuals inspired by nature’s beauty, driven by the desire to capture what lies beyond words.
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <!-- Working as a freelancer, he collaborates with brands, studios, and agencies globally. His services include Procedural 3D design, motion graphics, art direction, and creative direction.
-                    <br>
-                    <br>
-                    Selected clients and collaborators include Adidas, Australian Open, Kelly Wearstler, Mecca Beauty, Rendition Studio, Xochi Sun, Instinto Studio, and more.
-                    <br>
-                    <br> -->
-                    For inquiries and collaborations, get in touch via <a class="contact" href="mailto:xavierplasso@gmail.com" target="_blank">email</a> or  <a class="contact" href="https://www.instagram.com/xavipl__/" target="_blank">Instagram</a>.
-
-                </div>
-             </div>
-
-        </main>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        <script src="scripts/main.js"></script>
+        <div class="portfolio-scroll">
+            <video class="video-cover" autoplay muted loop>
+              <source src="video/laue-lounge-chair-a.mp4">
+            </video>
+          </div>
 
     </body>
 

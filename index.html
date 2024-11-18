@@ -5,6 +5,7 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
       <title>Xavi Works - Home</title>
+      <meta name="view-transition" content="same-origin" />
       <link href="style.css" rel="stylesheet" type="text/css"/>
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
       <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -13,32 +14,99 @@
      
     </head>
 
-    <body class="canvas"">
+    <body class="canvas">
 
+      <div class="content" data-scroll-container id="scroll-container">
 
-      <div class="nav-top">
+        <div class="fixed-grid" data-scroll data-scroll-sticky data-scroll-target="#scroll-container">
 
-        <a class="button button-1" href="about.html">Xavi</a>
-        <a class="button button-2" href="index.html">Works</a>
+          <a class="nav-button button-xavi" href="about.html">Xavi</a>
+          <a class="nav-button button-works" href="index.html">Works</a>
+          <p class="intention">Inspired by nature’s beauty, driven by the desire to evoke that which is beyond words.</p>
 
-      </div>
+        </div>  
 
-      <!-- <div class="nav-bottom">
+          <div class="portfolio-scroll">
+            <video class="video-cover" autoplay muted loop>
+              <source src="video/laue-lounge-chair-a.mp4">
+            </video>
+          </div>
 
+          <div class="portfolio-scroll">
+            <video class="video-cover" autoplay muted loop>
+              <source src="video/rendition-petals.mp4">
+            </video>
+          </div>
 
-        <a class="button button-4" href="mailto:xavi@xavi.works" target="_blank">Mail</a>
-        <a class="button button-5" href="https://www.instagram.com/xavi_lasso/" target="_blank">Insta</a>
-      </div> -->
+          <!-- <div class="portfolio-scroll">
+            <video class="video-cover" autoplay muted loop>
+              <source src="video/siames-ripples.mp4">
+            </video>
+          </div> -->
 
-      <main class="main">
+          <!-- <div class="cover-pair">
+            <img class="cover-image-1" src="images/raising-sol.png" alt="">
+            <div class="portfolio-scroll">
+              <video class="video-cover" autoplay muted loop>
+                <source src="video/fluyendo.mov">
+              </video>
+            </div>
+          </div> -->
 
-        <div class="cover">
+          <div class="cover-pair-2">
+            
+            <!-- <div class="portfolio-scroll-pair">
+              <video class="video-cover-pair" autoplay muted loop>
+                <source src="video/mecca.mov">
+              </video>
+            </div> -->
+            <img class="cover-image-1" src="images/raising-sol-c.png" alt="">
+            <img class="cover-image-1" src="images/surf-angel-black-bg.png" alt="">
 
-          <!-- <img class="cover-img" src="images/thumbs/thumb-laue.jpg" alt=""> -->
+          </div>
 
+          <div class="cover-pair-2">
+            
+            <img class="cover-image-1" src="images/mimilo_hero_square.jpg" alt="">
+            <img class="cover-image-1" src="images/mimilo_environment_02_001.jpg" alt="">
+
+          </div>
         </div>
-          
-      </main>
+
+        <script src="scripts/locomotive-scroll.min.js"></script>
+        <script type="text/javascript">
+          (function() {
+            'use strict';
+
+            const smoothScroll = new LocomotiveScroll({
+                el: document.querySelector('.content'),
+                smooth: true
+            });
+
+            smoothScroll.on('scroll', (args) => {
+              console.log(args);
+            });
+
+            const goToTop = document.querySelector('a.go-to-top');
+            if (goToTop) {
+              goToTop.addEventListener('click', (event) => {
+                console.log(event);
+                event.preventDefault();
+
+                // Does NOT Work
+                //window.scrollTo({
+                //	top: 0,
+                //	behavior: 'smooth'
+                //});
+
+                // Locomotive Scroll
+                smoothScroll.scrollTo(0, {
+                  duration: 1000
+                });
+              });
+            }
+          })();
+        </script>
 
     </body>
 
