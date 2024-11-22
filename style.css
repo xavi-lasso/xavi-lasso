@@ -357,5 +357,13 @@ p{
     .button-contact{
         font-size: 16px;
     }
+    .cover-pair-2{
+
+        display: grid;
+        grid-template-columns: 1fr;
+        height: 200vh;
+        background: none;
+    
+    }
  
 }
