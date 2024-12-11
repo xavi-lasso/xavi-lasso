@@ -5,72 +5,132 @@
     <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>Xavi Works - Home</title>
-      <!-- <meta name="view-transition" content="same-origin" /> -->
+      <title>Xavi Works</title>
       <link href="style.css" rel="stylesheet" type="text/css"/>
+      <link rel="stylesheet" href="styleAbout.css">
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
       <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
       <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
       <link rel="manifest" href="favicon/site.webmanifest">
-     
     </head>
 
-    <body class="canvas"> 
-
-      <div class="fixed-grid">
-
-        <a class="nav-button button-xavi" href="about.html">Xavi</a>
-        <a class="nav-button button-works" href="index.html">Works</a>
-        <p class="intention">Inspired by nature’s beauty, driven by the desire to evoke that which is beyond words.</p>
-
-      </div>  
-
-        <div class="portfolio-scroll">
-          <video class="video-cover" autoplay muted loop playsinline>
-            <source src="video/laue-lounge-lightbath.mov">
-          </video>
-        </div>
-
-        <div class="portfolio-scroll">
-          <video class="video-cover" autoplay muted loop playsinline>
-            <source src="video/rendition-petals.mp4">
-          </video>
-        </div>
-
-        <!-- <div class="portfolio-scroll">
-          <video class="video-cover" autoplay muted loop>
-            <source src="video/siames-ripples.mp4">
-          </video>
-        </div> -->
-
-        <!-- <div class="cover-pair">
-          <img class="cover-image-1" src="images/raising-sol.png" alt="">
-          <div class="portfolio-scroll">
-            <video class="video-cover" autoplay muted loop>
-              <source src="video/fluyendo.mov">
-            </video>
+    <body>
+      <div class="wrapper">
+  
+          <nav class="nav-grid">
+              <p id="showInfo" class="text-button xavi">XAVI</p>
+              <p id="showGallery" class="text-button works">WORKS</a>
+              
+              <div class="yinyang"><img id="colorToggle" src="img/yinyang.png" alt="Toggle Background"></div>
+            
+              <p id="info1" class="info hidden bio-text">
+                  Xavi (Xavier Peñaherrera Lasso) is an artist and designer making images, videos, and objects with 3D. Inspired by nature’s beauty, driven by the desire to evoke that which is beyond words.            
+              </p>
+  
+              <div id="info2" class="info hidden services">
+                  <h3>Services</h3>
+                  <p class="list">
+                      3D Design<br>
+                      Art Direction<br>
+                      Motion Design<br>
+                      Creative Direction<br>
+                      Procedural Setups<br>
+                      R&D
+                  </p>
+              </div>
+  
+              <div id="info3" class="info hidden clients">
+                  <h3>Selected Clients</h3>
+                  <p class="list">
+                  Australian Open<br>
+                  Kelly Wearstler<br>
+                  Rendition Studio<br>
+                  Mecca Beauty<br>
+                  Xochi<br>
+                  Fundación Telefónica
+                  </p>
+              </div>
+  
+              <p id="info4" class="info hidden contact">
+                  <a class="button-contact contact-1" href="mailto:xavierplasso@gmail.com" target="_blank">Email</a>  
+                  <a class="button-contact contact-2" href="https://www.instagram.com/xavipl__/" target="_blank">Insta</a>  
+                  <a class="button-contact contact-3" href="https://www.linkedin.com/in/xavilasso/" target="_blank">LinkedIn</a>
+              </p>
+        
+  
+          </nav>
+  
+          <div class="about">
+              
+  
           </div>
-        </div> -->
-
-        <div class="cover-pair-2">
-          
-          <!-- <div class="portfolio-scroll-pair">
-            <video class="video-cover-pair" autoplay muted loop>
-              <source src="video/mecca.mov">
-            </video>
-          </div> -->
-          <img class="cover-image-1" src="images/raising-sol-c.png" alt="">
-          <img class="cover-image-1" src="images/surf-angel-black-bg.png" alt="">
-
-        </div>
-
-        <div class="cover-pair-2">
-          
-          <img class="cover-image-1" src="images/mimilo_hero_square.jpg" alt="">
-          <img class="cover-image-1" src="images/mimilo_environment_02_001.jpg" alt="">
-
-        </div>
-
-    </body>
-
-</html>
+  
+          <div class="block">
+              
+              <div class="bar"></div>
+   
+              <div id="gallery" class="gallery">
+                  <div class="item">
+                      <div class="item-img-v"><img src="images/00-surfangel.webp" alt=""></div>
+                  </div>
+                  <div class="item">
+                      <div class="item-vid-h">
+                          <video class="videos" autoplay muted loop playsinline>
+                              <source src="video/00-laue-lounge-light.webm">
+                          </video>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="item-img-v"><img src="images/01-mimilo.webp" alt=""></div>
+                  </div>
+                  <div class="item">
+                      <div class="item-vid-v9">
+                          <video class="videos" autoplay muted loop playsinline>
+                              <source src="video/03-meccabeauty.webm">
+                          </video>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="item-img-v"><img src="images/02-raisingsol.webp" alt=""></div>
+                  </div>
+                  <div class="item">
+                      <div class="item-vid-v4">
+                          <video class="videos" autoplay muted loop playsinline>
+                              <source src="video/05-fluyendo.webm">
+                          </video>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="item-img-v"><img src="images/03-oceanic.webp" alt=""></div>
+                  </div>
+                  <div class="item-vid-h">
+                      <video class="videos" autoplay muted loop playsinline>
+                          <source src="video/01-bambi-petals.webm">
+                      </video>
+                  </div>
+  
+                  <div class="item">
+                      <div class="item-img-s"><img src="images/sq-00-kellywearstler.webp" alt=""></div>
+                  </div>
+                  <div class="item-vid-h">
+                      <video class="videos" autoplay muted loop playsinline>
+                          <source src="video/04-siames.webm">
+                      </video>
+                  </div>
+                  <div class="item">
+                      <div class="item-img-s"><img src="images/sq-02-ojas.webp" alt=""></div>
+                  </div>
+                  <div class="item">
+                      <div class="item-img-h"><img src="images/ho-00-coralana.webp" alt=""></div>
+                  </div>
+                  <div class="item">
+                      <div class="item-img-h"><img src="images/ho-01-surfshack.webp" alt=""></div>
+                  </div>
+              </div>    
+          </div>
+  
+  
+      </div>
+      <script src="script.js"></script>
+  </body>
+  </html>

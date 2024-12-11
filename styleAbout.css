@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'PPMori';
+    src: url('font/PPMori-Extralight.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'PPMoriSB';
+    src: url('font/PPMori-SemiBold.woff2') format('woff2');
+} 
+
+@font-face {
+    font-family: 'PPMoriEB';
+    src: url('font/PPMori-ExtraBold.woff2') format('woff2');
+}
+
+.bio-text{
+
+    grid-area: 4 / 5 / span 2 / span 7 ;
+    font-family: 'PPMoriSB';
+    font-size: 30px;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    background: none;
+    /* z-index: 10; */
+    text-align: left;
+    
+}
+
+h3 {
+    font-family: 'PPMoriSB';
+    font-size: 20px;
+}
+
+a {
+    font-family: 'PPMoriEB';
+    text-decoration: none;
+    color: #efefef;
+    transition: filter 1s;
+}
+
+a:hover {
+    filter: blur(3px);
+}
+.services{
+
+    background: none;
+    grid-area: 4 / 1 / span 2 / span 3 ;
+
+}
+
+.clients{
+
+    background: none;
+    grid-area: 6 / 1 / span 2 / span 3 ;
+    align-self: end;
+
+}
+
+.list{
+
+    font-family: 'PPMori';
+    font-size: 18px;
+    line-height: 1.2;
+
+}
+
+.contact{
+
+    grid-area: 7 / 5 / span 1 / span 7 ;
+    word-spacing: 20px;
+    /* position: absolute;
+    bottom: 0; */
+    align-self: end;
+    
+}
+
+.button-contact{
+
+    font-size: 24px;
+      
+}
