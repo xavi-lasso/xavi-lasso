@@ -23,12 +23,13 @@
     background: none;
     /* z-index: 10; */
     text-align: left;
+    /* min-height: 200px; */
     
 }
 
 h3 {
     font-family: 'PPMoriSB';
-    font-size: 20px;
+    font-size: 16px;
 }
 
 a {
@@ -59,7 +60,7 @@ a:hover {
 .list{
 
     font-family: 'PPMori';
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.2;
 
 }
