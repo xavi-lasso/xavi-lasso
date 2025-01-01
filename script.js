@@ -8,7 +8,7 @@ const toggleButton = document.getElementById("colorToggle");
 
 toggleButton.addEventListener("click", () => {
   // Toggle the background color
-  document.body.style.backgroundColor = isLight ? "#221F1D" : "#b4aeaa";
+  document.body.style.backgroundColor = isLight ? "#b4aeaa" : "#221F1D";
   isLight = !isLight;
 
   // Increment rotation by 180 degrees
