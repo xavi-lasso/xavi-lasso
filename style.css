@@ -1,259 +1,1488 @@
+/* ─── FONTS ─────────────────────────────────────────────────────────────────────
+   Monument Extended is the whole site. All four cuts are declared so a weight
+   change loads a real face rather than a synthesised one, but only Thin (the
+   placeholder numerals) and Light (everything else) are currently asked for.
+   PPMori was retired when Monument took over the body text; its files are still
+   in font/ and can be deleted. */
+
 @font-face {
-    font-family: 'Stussy';
-    src: url('font/Stussy Script Regular.woff2') format('woff2');
+    font-family: 'Monument';
+    src: url('font/PPMonumentExtended-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
 }
+@font-face {
+    font-family: 'Monument';
+    src: url('font/PPMonumentExtended-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Monument';
+    src: url('font/PPMonumentExtended-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Monument';
+    src: url('font/PPMonumentExtended-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+/* ─── DESIGN TOKENS ───────────────────────────────────────────────────────────── */
+
+:root {
+    --bg-color: #F5F1F0;
+    --text-color: #101010;
+    /* Carries a touch more weight than it did at 400 — the Light cut thins the
+       stroke, and 0.45 left labels and the colophon looking washed out. */
+    --text-muted: rgba(16, 16, 16, 0.55);
+
+    /* One family across the whole site. --font-display is kept as its own name
+       so display and running text can part ways again in one edit. */
+    --font-sans: 'Monument', system-ui, -apple-system, sans-serif;
+    --font-display: var(--font-sans);
+
+    /* Both sizes run smaller than they did in Mori, and the small caps carry
+       less tracking: Monument Extended is already wide, so the old values
+       pushed every label and paragraph well past a comfortable measure. */
+    --text-ui: 0.75rem;                          /* 12px */
+    --text-body: 1.0625rem;                      /* 17px */
+    --tracking-ui: 0.02em;
+    --row: 1.5;                                  /* small-caps line stacking */
+
+    --gutter: clamp(1rem, 1.7vw, 1.5rem);   /* media viewer only */
+}
+
+
+/* ─── RESET & BASE ────────────────────────────────────────────────────────────── */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Stussy;
 }
 
-html, body {   
-    background-color: #221F1D;
-    transition: background-color 0.5s ease;
+html, body {
+    background-color: var(--bg-color);
+    transition: background-color 0.5s ease, opacity 0.4s ease;
+}
+
+body {
+    opacity: 0;
+    font-family: var(--font-sans);
+    /* Light throughout. Monument Regular reads heavy at these sizes; the Light
+       cut is what makes the type feel like a presence rather than a block. */
+    font-weight: 300;
+    font-size: var(--text-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    transition: color 0.5s ease, background-color 0.5s ease, opacity 0.4s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
     text-decoration: none;
-    color: #efefef;
-    transition: filter 1s;
+    color: inherit;
+    transition: opacity 0.25s ease;
 }
 
 a:hover {
-    filter: blur(3px);
-}
-.text-button {
-    cursor: pointer;
-    transition: filter 1s;
-}
-
-.text-button:hover {
-    filter: blur(3px);
-}
-
-.wrapper {
-    width: 100%;
-    height: 100%;
-    
-}
-
-.gallery {
-    position: relative;
-    top: 0;
-    width: 85%;
-    z-index: 1;
-    transition: opacity 1.0s ease;
-}
-
-#gallery img{
-    transition: opacity 1.0s ease;
+    opacity: 0.5;
 }
 
 img {
     width: 100%;
-    height: 100%;
-    object-fit:contain;
 }
 
-.videos{
-    width: 100%;
-    height: 100%;
-}
+/* Confirms a copy by cross-fading to a second label — see script.js.
 
-.block {
-    position: relative;
-    width: 100%;
-    display: flex;
-    z-index: 0;
-     /* Smooth fade-out */
-}
-
-.nav-grid{
-    font-size: 40px;
-    color: #efefef;
-    background-color: none;
-    width: 100vw;
-    height: 100vh;
-    padding: 50px;
-    position: fixed;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 50px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 100px;
-    z-index: 10;
-}
-
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1.0s ease;
-}
-
-.info {
-    opacity: 0; /* Start hidden */
-    pointer-events: none;
-    transition: opacity 1.0s ease; /* Smooth fade-in */
-}
-  
-.info.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.xavi{
-    grid-area: 1 / 1 / span 1 / span 1;
-}
-
-.works{
-    grid-area: 1 / 2 / span 1 / span 1;
-}
-
-.yinyang {
-    grid-area: 1 / 12 /span 1 / span 1;
-    width: 30px;
-    height: -30px;
-    justify-self:right;
-    align-items: center;
-}
-
-#colorToggle {
-
+   Both labels live in the same single grid cell, so the box is always as wide
+   as the longer of the two and swapping states cannot nudge the links sitting
+   beside it in the row. Freezing the width from offsetWidth instead was tried
+   and dropped: the rounded integer made the restored label wrap. */
+.copy-email {
     cursor: pointer;
-    transition: transform 0.5s ease;
+    display: inline-grid;
+    justify-items: center;
+    transition: opacity 0.15s ease;
 }
 
-#colorToggle:hover {
-    transform: scale(1.1); /* Slight zoom effect on hover */
+.copy-email > span {
+    grid-area: 1 / 1;
+    white-space: nowrap;
+    transition: opacity 0.25s ease;
 }
 
-#colorToggle.rotate {
-    transform: rotate(180deg); /* Rotate 180 degrees */
+.copy-email .copy-done,
+.copy-email.is-copied .copy-label {
+    opacity: 0;
 }
 
-.bar {
+.copy-email.is-copied .copy-done {
+    opacity: 1;
+}
 
-    position: relative;
-    width: 15%;
-    height: 100vh;
+.copy-email:hover {
+    opacity: 0.5;
+}
+
+/* ─── MEDIA VIEWER ────────────────────────────────────────────────────────────── */
+
+/* Items stack at full viewport width and scroll vertically. Nothing is scaled to
+   fit — a tall image simply runs past the fold. */
+
+html.viewer-open,
+html.viewer-open body {
     overflow: hidden;
-    z-index: 0;
 }
 
-.item-vid-h {
-    width: 65vw;
-    margin: 150px auto;   
+.viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    /* The cross loses its upright stroke once you are inside: opened, the same
+       mark reads as the way back out. Same weight, same two tones, same hotspot
+       as the plus it grew from, so nothing jumps at the moment of the click.
+       zoom-out stays as the fallback. */
+    cursor:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M5 28h46' stroke='%23101010' stroke-width='1.5'/%3E%3C/svg%3E") 28 28,
+        zoom-out;
+    background-color: var(--bg-color);
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
 }
 
-.item-vid-v9 {
-    height: 80vh;
-    margin: 150px auto;   
+.viewer.is-open {
+    opacity: 1;
+    visibility: visible;
 }
 
-.item-vid-v4 {
-    height: 75vh;
-    margin: 150px auto;   
+.viewer.is-on-dark {
+    cursor:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M5 28h46' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E") 28 28,
+        zoom-out;
 }
 
-.item-vid-s {
-    height: 70vh;
-    margin: 150px auto;   
+/* The close button sits inside the viewer and is a button, not artwork — it
+   keeps an ordinary pointer rather than inheriting the minus. */
+.viewer-close {
+    cursor: pointer;
+}
+
+/* No gap: zoomed in, the pieces run straight into one another. The air on the
+   case study is there to separate the work while you are reading the page; in
+   here you are looking at one thing at a time and a band of ground between
+   them only interrupts. */
+.viewer-track {
+    display: flex;
+    flex-direction: column;
+}
+
+.viewer-slide img,
+.viewer-slide video {
+    width: 100%;
+    display: block;
+}
+
+/* Fixed inside the scrolling overlay, so it stays put as you move through. */
+.viewer-close {
+    position: fixed;
+    top: var(--gutter);
+    right: var(--gutter);
+    z-index: 2;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: var(--text-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    color: var(--text-color);
+    transition: opacity 0.25s ease;
+}
+
+.viewer-close:hover {
+    opacity: 0.5;
+}
+
+/* ─── CORNER NAV LAYOUT ────────────────────────────────────────────────────────
+   Four labels, one per viewport corner, over a full-bleed hero and whatever the
+   page carries beneath it. .layout-corners holds the tokens the whole
+   composition derives from — label size, edge inset, frame ratios — so tuning
+   any page starts there. */
+
+.layout-corners {
+    /* Tune the whole composition from here. */
+    --corner-size: clamp(1.05rem, 1.85vw, 1.75rem);  /* nav label size        */
+    --corner-inset: clamp(1rem, 2vw, 1.75rem);       /* distance from edges   */
+    --grid-gap: 0px;                                 /* between frames, both
+                                                        grids run seamless    */
+    /* Four frame ratios, one per shape the work actually comes in. A frame
+       crops with object-fit, so a source put in the wrong one loses real
+       picture: a 9:16 film in a 17:10 frame keeps barely a third of it. Pick
+       the ratio nearest the asset's own and the crop stays a trim. */
+    --ratio-wide: 1.7;                               /* landscape (17:10)     */
+    --ratio-square: 1;                               /* 1:1 renders           */
+    --ratio-tall: 0.8;                               /* paired thumbs (4:5)   */
+    --ratio-portrait: 0.5625;                        /* 9:16 film             */
+
+    /* Air between blocks on a case study. Wide on purpose: the room between
+       the pieces is what makes them read as a body of work rather than a
+       contact sheet. Around 170px on a laptop, and it scales with the page. */
+    --case-gap: clamp(3.5rem, 12.5vw, 11rem);
+
+    /* And the opposite on the research page, which is a contact sheet and
+       should read as one. */
+    --research-gap: clamp(0.75rem, 1.6vw, 1.5rem);
+
+    /* How far the second of a side-by-side pair drops below the first. A
+       percentage, so it is read off the page width and keeps its proportion at
+       any size. */
+    --case-stagger: 14%;
+
+    /* Derived — the band a pair of labels occupies, which the grid keeps clear
+       at the bottom of the page. */
+    --corner-band: calc(var(--corner-inset) * 2 + var(--corner-size) * 1.15);
+}
+
+/* ── Corner nav ──────────────────────────────────────────────────────────── */
+
+.corner-nav {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    /* Named for the view transition, so the four labels animate as their own
+       layer and hold their corners while the page behind them changes. */
+    view-transition-name: corner-nav;
+}
+
+.corner-nav a {
+    position: absolute;
+    pointer-events: auto;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: var(--corner-size);
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    /* Ink is the resting state: correct over the page itself and over light
+       artwork, and what shows if the script never runs. */
+    color: var(--text-color);
+    transition: color 0.35s ease;
+}
+
+.corner-nav a:nth-child(1) { top: var(--corner-inset);    left: var(--corner-inset); }
+.corner-nav a:nth-child(2) { top: var(--corner-inset);    right: var(--corner-inset); }
+.corner-nav a:nth-child(3) { bottom: var(--corner-inset); left: var(--corner-inset); }
+.corner-nav a:nth-child(4) { bottom: var(--corner-inset); right: var(--corner-inset); }
+
+
+/* Each label is coloured from the luminance of whatever sits behind it, read
+   per label in script.js. Ink is the resting state: it is correct over the page
+   itself and over light artwork, and it is what shows if the script never runs.
+
+   is-tone-pending suppresses the fade for the first reading only, so labels
+   painted before the media decoded snap to the right colour instead of visibly
+   crossing to it. */
+.corner-nav a.is-on-dark {
+    color: #fff;
+}
+
+.corner-nav.is-tone-pending a {
+    transition: none;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+/* Fills the viewport edge to edge, so all four labels sit over the media rather
+   than two of them landing on the cream page background, where white type has
+   nothing to hold on to. */
+.hero {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background-color: var(--placeholder-bg);
+}
+
+.hero img,
+.hero video {
+    /* Absolute so more than one frame can share the box — Info stacks two and
+       cross-fades between them. With static flow the second would sit below the
+       first and be clipped away by the hero's overflow. */
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Statement ───────────────────────────────────────────────────────────── */
+
+/* Edge to edge on the page background — the pause between the hero and the
+   grid, so the vertical padding is doing most of the work. */
+.statement {
+    padding: clamp(9rem, 24vh, 17rem) var(--corner-inset);
+}
+
+.statement p {
+    margin-inline: auto;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.125rem, 3vw, 2.75rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-align: center;
+    /* The measure sets the break. min(…, 100%) is only a guard so it can never
+       outrun the container on a narrow screen. */
+    max-width: min(24ch, 100%);
+    text-wrap: balance;
+}
+
+/* ── Thumbnail grid ──────────────────────────────────────────────────────── */
+
+/* Two tracks. A wide thumb spans both, which gives the sketch's alternating
+   pair / full-width rhythm without needing a wrapper per row. */
+.thumb-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--grid-gap);
+    margin-top: var(--grid-gap);
+}
+
+.thumb {
+    display: block;
+    position: relative;
+    aspect-ratio: var(--ratio-tall);
+    overflow: hidden;
+    background-color: var(--placeholder-bg);
+    transition: background-color 0.3s ease;
+}
+
+.thumb--wide {
+    grid-column: 1 / -1;
+    aspect-ratio: var(--ratio-wide);
+}
+
+/* The other three shapes, all half-width so they pair across a row. Both
+   frames in a row must carry the same ratio: the row is as tall as its taller
+   frame, so a 1:1 sitting beside a 4:5 would leave a band of bare ground under
+   it — the very gap the grid was closed up to avoid. */
+.thumb--square {
+    aspect-ratio: var(--ratio-square);
+}
+
+.thumb--portrait {
+    aspect-ratio: var(--ratio-portrait);
+}
+
+/* Landscape at half width, for a pair of wide stills in one row. */
+.thumb--land {
+    aspect-ratio: var(--ratio-wide);
+}
+
+/* An odd frame with no partner: it spans both tracks but keeps a column's
+   width, centred, rather than stretching to a shape its picture is not.
+   Squaring up a lone 9:16 film would cost two thirds of the frame. */
+.thumb--solo {
+    grid-column: 1 / -1;
+    width: 50%;
+    margin-inline: auto;
+}
+
+/* The global a:hover fade would dim the artwork once real media lands in the
+   frame; the placeholder answers a hover by deepening its fill instead. */
+.thumb:hover {
+    opacity: 1;
+    background-color: var(--placeholder-bg-hover);
+}
+
+/* Drop-in slot: put an <img> or <video> inside a .thumb and it fills the frame
+   and covers the placeholder marks. Nothing else has to change. .thumb already
+   holds off the global a:hover fade, so over real media the frame answers a
+   hover by easing the image up in scale instead. */
+.thumb img,
+.thumb video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Placeholder marks ───────────────────────────────────────────────────── */
+
+:root {
+    --placeholder-bg: rgba(16, 16, 16, 0.07);
+    --placeholder-bg-hover: rgba(16, 16, 16, 0.11);
+    --placeholder-ink: rgba(16, 16, 16, 0.3);
+    --placeholder-line: rgba(16, 16, 16, 0.16);
 }
 
 
-.item-img-v {
-    height: 75vh;
-    margin: 150px auto;
+/* A hairline inset frame. Drawn as a shadow rather than a border so it costs
+   the layout nothing and the frame keeps its exact aspect ratio. */
+.thumb-slot {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px var(--placeholder-line);
 }
 
-.item-img-h {
-    width: 65vw;
-    margin: 150px auto;
+/* The index, centred and set large in Monument Thin. */
+.thumb-index {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    letter-spacing: 0.02em;
+    color: var(--placeholder-ink);
 }
 
-.item-img-s {
-    height: 70vh;
-    margin: 150px auto;
+/* Corner caption: project name, then the ratio the frame is cut to. */
+.thumb-caption {
+    position: absolute;
+    left: 1rem;
+    bottom: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    line-height: var(--row);
+    color: var(--placeholder-ink);
 }
 
-@media(max-width: 1200px) {
-    .nav-grid {
-        font-size: 30px;
+.thumb-caption span:last-child {
+    opacity: 0.6;
+}
+
+/* ─── PAGE BLOCKS ─────────────────────────────────────────────────────────────
+   The centred blocks a case study and the Info page are both built from:
+   full-bleed hero, one block of type, then whatever the page carries. They
+   share .layout-corners, so the nav, gaps and ratios are set there. */
+
+/* One block, not three stacked sections — title, meta and lede belong to
+   the same silence between the hero and the first frame. */
+.page-head {
+    padding: clamp(7rem, 18vh, 13rem) var(--corner-inset) clamp(5rem, 12vh, 9rem);
+    text-align: center;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3.4vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+/* Project credits, or the contact lines on Info: one row at desktop, wrapping
+   into a block on a phone. */
+/* Stacked, not strung across a row, and sitting under the description rather
+   than between it and the title. A row of credits has to be read sideways and
+   never balances: sized to content the three items measured 604px, 110px and
+   47px, and forcing them to equal columns only traded that for a wide block of
+   nothing. One under another, each is centred on the same axis as the title and
+   the paragraph, and a long discipline can wrap without moving anything else. */
+.page-meta {
+    margin-top: clamp(2.5rem, 6vh, 4.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.page-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: var(--text-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    line-height: var(--row);
+    /* No fixed width now that each credit has a line to itself — only a ceiling,
+       so a long discipline wraps at a readable measure instead of running the
+       width of the page. */
+    max-width: 26rem;
+}
+
+.page-meta dt {
+    color: var(--text-muted);
+}
+
+/* Two stacked lists side by side on Info. Only the section labels take the
+   small caps; the entries stay in sentence case so brand names keep their own
+   casing. */
+.page-lists {
+    margin: clamp(3.5rem, 9vh, 6rem) auto 0;
+    max-width: 40rem;
+    /* Two equal tracks, not content-sized columns. Sized to their own content
+       the wider list pushed the seam between them off the page axis, which is
+       the edge the eye actually reads as the centre. */
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 4rem);
+}
+
+.page-lists h2 {
+    font-size: var(--text-ui);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    line-height: var(--row);
+    color: var(--text-muted);
+}
+
+.page-lists ul {
+    margin-top: 1.1rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Contact on Info: three links, no labels. The credits component above pairs a
+   label with a value, which here would have every link name itself twice. */
+.page-links {
+    margin-top: clamp(2.5rem, 6vh, 4.5rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem clamp(1.5rem, 3.5vw, 3.5rem);
+    font-size: var(--text-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    line-height: var(--row);
+}
+
+/* Connect stacks the same component and drops the small caps. An email address
+   is content, not a label — uppercasing it makes it harder to read, and at four
+   items a column reads more calmly than a row. */
+.page-links--stack {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: var(--text-body);
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.5;
+}
+
+.page-lede {
+    margin: clamp(3rem, 7vh, 5rem) auto 0;
+    /* Stated, not inherited: on Info this is an h1, and the browser default
+       would otherwise render it bold. */
+    font-weight: 300;
+    /* Narrower than it was in Mori: a Monument ch is much wider, so the same
+       count would run a paragraph most of the way across the page. */
+    max-width: 40ch;
+    font-size: var(--text-body);
+    line-height: 1.65;
+    text-wrap: balance;
+}
+
+/* ── Page footer ─────────────────────────────────────────────────────────────
+   Centred rather than pushed to the edges: the bottom two corner labels are
+   pinned there, and a link in the same corner would land underneath one. */
+.page-foot {
+    padding: clamp(6rem, 14vh, 10rem) var(--corner-inset)
+             calc(var(--corner-band) + clamp(4rem, 9vh, 7rem));
+    text-align: center;
+}
+
+.page-foot-label {
+    font-size: var(--text-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    color: var(--text-muted);
+}
+
+.page-foot-link {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-family: var(--font-display);
+    font-weight: 300;
+    /* Deliberately under .page-title: the next project is a way out of this
+       one, not a second heading competing with it. */
+    font-size: clamp(1.25rem, 2.6vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+/* ── Case study media ────────────────────────────────────────────────────────
+   The home grid is a mosaic: fixed frames, flush to one another, cropping to
+   fit. A case study is the opposite and wants the room to be one. So this is a
+   single column with a wide measure of air between blocks, and nothing is
+   cropped at all — every piece keeps its own proportions, and the width it is
+   given is the only thing that sets its size.
+
+   Four widths carry the rhythm. Anything landscape can take the full bleed;
+   squares and portraits would be enormous at that width, so they sit inside
+   it, and the narrower two alternate their edge to let the column breathe. */
+.case-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--case-gap);
+    margin-top: var(--case-gap);
+}
+
+/* Two things set a block's size, and it takes whichever is smaller.
+   --tier is its share of the page. The second is a ceiling on height: a tall
+   picture given two thirds of a wide page would stand taller than the window
+   and could never be seen whole, so its width is cut back until its height
+   fits. --ar is the piece's own width/height, written on each block from the
+   measured file, which is what lets a width be worked out from a height.
+   The dvh line is the same rule for browsers that have it: it tracks the
+   viewport as a phone's address bar comes and goes. */
+.case-block {
+    display: block;
+    --tier: 66.667%;                                 /* the resting width */
+    width: min(var(--tier), calc(78vh * var(--ar, 1)));
+    width: min(var(--tier), calc(78dvh * var(--ar, 1)));
+}
+
+/* Full bleed gets the whole width and the whole window, not 78% of it — the
+   point of it is to run edge to edge, and a landscape piece is short enough
+   that it does. On a laptop opened short it steps in from the sides instead of
+   running off the bottom, because being seen whole matters more than touching
+   the edges. The hero is not part of this: it is its own screen. */
+.case-block--full {
+    width: min(100%, calc(100vh * var(--ar, 1)));
+    width: min(100%, calc(100dvh * var(--ar, 1)));
+}
+
+.case-block--half {
+    --tier: 50%;
+}
+
+.case-block--third {
+    --tier: 33.333%;
+}
+
+/* Two pieces side by side, and the reason the column does not read as a list
+   when a project is six renders of the same size. They are deliberately not
+   levelled: one drops by --case-stagger so the pair reads as two things seen
+   together rather than a row of specimens. Heights need not match, which is
+   what lets any two pieces pair up. */
+.case-pair {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8%;
+}
+
+.case-pair .case-block {
+    --tier: 40%;
+}
+
+.case-pair > :nth-child(2) {
+    margin-top: var(--case-stagger);
+}
+
+/* Drops the other one instead, so consecutive pairs on a page lean opposite
+   ways rather than repeating the same step. */
+.case-pair--lift > :nth-child(1) {
+    margin-top: var(--case-stagger);
+}
+
+.case-pair--lift > :nth-child(2) {
+    margin-top: 0;
+}
+
+/* No frame, no object-fit: the box is whatever shape the file is. The width
+   and height attributes on the media give the browser that shape up front, so
+   the page does not jump as each one decodes. */
+.case-block img,
+.case-block video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* A film hosted elsewhere. Every other block takes its height from the file
+   inside it, which a cross-origin frame will never report, so this one carries
+   the ratio itself and the frame fills it. The width rules above still apply,
+   so a hosted film is held to the same tiers and the same height ceiling as
+   everything else in the column. */
+.case-embed {
+    aspect-ratio: var(--ar, 1.7778);
+}
+
+.case-embed iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ── Media frames ────────────────────────────────────────────────────────────
+   The home grid's frames crop to fit; the viewer opens the full file. */
+
+/* Over a piece of work the pointer becomes a wide, thin cross — the same mark
+   the corner labels are drawn with. The 1.5px stroke is not a guess: the nav is
+   Monument Light at 26.2px and its stems measure 1.5px across, so the cross
+   carries exactly the weight of the type it sits beside. The numbers after the
+   url are the hotspot: dead centre of the cross, not its top-left corner.
+   zoom-in is the fallback for anything that will not take an SVG pointer.
+
+   Two versions of every pointer, in the page's ink and in white, switched by
+   the same is-on-dark class the corner labels use — a cursor is a mark on the
+   artwork like any other and has the same problem of landing on either. The
+   colour is read from the pixels under the pointer itself; see initPointerTone
+   in script.js. A solid stroke with nothing behind it, so what moves over the
+   work is one clean line. */
+a.viewer-item {
+    cursor:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 5v46M5 28h46' stroke='%23101010' stroke-width='1.5'/%3E%3C/svg%3E") 28 28,
+        zoom-in;
+}
+
+a.viewer-item.is-on-dark {
+    cursor:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 5v46M5 28h46' stroke='%23ffffff' stroke-width='1.5'/%3E%3C/svg%3E") 28 28,
+        zoom-in;
+}
+
+/* ── The drawn pointer ───────────────────────────────────────────────────────
+   Everything above is the version the operating system draws, and it cannot be
+   animated: a cursor image is swapped, never tweened. So when there is a fine
+   pointer and script.js is running, those are hidden and the mark is drawn as a
+   real element instead, which can move and change like anything else on the
+   page. The url() rules above stay as they are and take over whenever this does
+   not apply — no script, or a touch screen. */
+html.has-drawn-cursor a.viewer-item,
+html.has-drawn-cursor a.viewer-item.is-on-dark,
+html.has-drawn-cursor .viewer,
+html.has-drawn-cursor .viewer.is-on-dark {
+    cursor: none;
+}
+
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 56px;
+    height: 56px;
+    /* Pulls the box back by half its size so the point being pointed at is the
+       centre of the cross, matching the hotspot of the url() version. */
+    margin: -28px 0 0 -28px;
+    z-index: 200;                                    /* over .viewer, at 100 */
+    pointer-events: none;
+    opacity: 0;
+    scale: 0.6;
+    /* Position is written straight to `translate` every frame, so scale lives
+       in its own property rather than in a transform the script would overwrite
+       on the next move. */
+    transition: opacity 0.2s ease, scale 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cursor.is-visible {
+    opacity: 1;
+    scale: 1;
+}
+
+.cursor line {
+    stroke: var(--text-color);
+    stroke-width: 1.5;
+    /* fill-box so the upright shrinks about its own middle rather than the
+       corner of the whole svg. */
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: stroke 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cursor.is-on-dark line {
+    stroke: #fff;
+}
+
+/* Opened, the upright closes into the crossbar and the plus is a minus. */
+.cursor.is-minus .cursor-upright {
+    transform: scaleY(0);
+}
+
+/* No hover state at all on the work. The global a:hover takes a link to half
+   opacity, and any fade over artwork reads as the picture failing rather than
+   as a response — so this holds it at full strength rather than leaving it
+   unstyled, which would let the global rule through. */
+.case-block:hover {
+    opacity: 1;
+}
+
+.thumb:hover img,
+.thumb:hover video {
+    transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .thumb:hover img,
+    .thumb:hover video {
+        transform: none;
     }
 
-    .yinyang {
-        width: 25px;
-        height: 25px;
+    /* The mark still follows the pointer and still changes shape — it just
+       arrives at each state directly. Following is not motion the reader did
+       not ask for; it is the pointer. */
+    .cursor,
+    .cursor line {
+        transition-duration: 0s;
     }
 }
 
-@media(max-width: 900px) {
+/* The only in-page anchor is the nav's Works label jumping to the grid. */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
 
-    .block{
-        padding-top: 65px;
+/* ─── RESEARCH ─────────────────────────────────────────────────────────────────
+   An archive, not a case study. The case studies give a handful of pieces a lot
+   of room each and explain them by sequence; this is thirty unexplained things
+   and wants density — the interest is in how much there is and how various it
+   is, which only shows when they are seen together.
+
+   Laid out in columns rather than a grid. The pieces are every proportion there
+   is, from a 4096-square render to a 16:9 frame, and a grid would have to crop
+   them to hold its rows. Columns ask only for a width and let each piece take
+   whatever height it is, so nothing is cut and the page packs itself. */
+
+/* Three columns that scroll on their own. Not a multi-column block any more:
+   that flows one stream of content through three tracks, so it can only ever
+   scroll as one thing. These are three real containers side by side, each the
+   height of the window and each scrolling its own contents, which is what lets
+   the archive be read three ways at once. */
+.research-grid {
+    display: flex;
+    gap: var(--research-gap);
+    height: 100vh;
+    height: 100dvh;
+}
+
+.research-col {
+    flex: 1 1 0;
+    /* Flex items refuse to shrink below their content's intrinsic width without
+       this, which on a column of wide pictures pushes the row off the screen. */
+    min-width: 0;
+    height: 100%;
+    overflow-y: auto;
+    /* Reaching the end of one column should not start scrolling the page
+       behind it. */
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+}
+
+.research-col::-webkit-scrollbar {
+    display: none;
+}
+
+/* The archive runs on black, edge to edge, with the pieces butted against one
+   another. Only the two tokens change: --bg-color is read by html and body for
+   the ground, and by script.js for the ground's luminance, so switching it here
+   also tells the corner labels that an empty stretch of this page is dark and
+   they should go white over it. --text-color is deliberately left alone — it is
+   the ink a label takes over a *pale* picture, and those are still in here. */
+html.is-research {
+    --bg-color: #000;
+}
+
+/* Info inverted: the two root tokens swap places rather than moving to new
+   values, so the contrast against each ground stays exactly what it was.
+   --text-color flips too, unlike the archive above — here it is the page's
+   own copy, not a label over someone else's picture, so the ink has to read
+   on this ground. The corner labels need nothing extra: BG_LUMINANCE in
+   script.js reads --bg-color straight from the stylesheet, so the two corners
+   over the plain ground already go white, and the two over the hero pair
+   already read the pictures themselves. */
+html.is-about {
+    --bg-color: #101010;
+    --text-color: #F5F1F0;
+    --text-muted: rgba(245, 241, 240, 0.55);
+}
+
+/* With the columns doing the scrolling, the page itself must not. Otherwise a
+   wheel over the gap between two columns scrolls the document instead, and the
+   whole triptych slides away. */
+@media (min-width: 901px) {
+    html.is-research,
+    html.is-research body {
+        overflow: hidden;
     }
-    
-    .works{
-        grid-area: 1 / 3 / span 1 / span 1;
+}
+
+/* The gap has to be overridden here rather than on html: --research-gap is
+   declared on .layout-corners with the rest of the layout tokens, and a value
+   set further up the tree loses to the element's own declaration however
+   specific the selector above it is. */
+html.is-research .layout-corners {
+    --research-gap: 0px;
+}
+
+/* The one piece of type on the page that is not a corner label, and the only
+   one that cannot read the artwork to decide its colour. */
+html.is-research .colophon {
+    color: #fff;
+    opacity: 0.4;
+}
+
+.research-item {
+    display: block;
+    /* Without this a column break can fall through the middle of a picture and
+       print the top half above the bottom half in the next column. */
+    break-inside: avoid;
+    margin-bottom: var(--research-gap);
+}
+
+/* The global a:hover would take each piece to half opacity. As on the case
+   studies, the work does not dim. */
+.research-item:hover {
+    opacity: 1;
+}
+
+.research-item img,
+.research-item video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ─── PAGE TRANSITIONS ─────────────────────────────────────────────────────────
+   Cross-document view transitions: the browser cross-fades between two real
+   page loads. This replaces Barba, which kept the document alive and swapped a
+   container inside it — and with it every problem that came from having two
+   pages in the DOM at once, plus the manual re-init and teardown that a page
+   which never unloads requires.
+
+   Unsupported browsers ignore all of this and navigate normally, which is
+   exactly the behaviour of no transition library at all. */
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.45s;
+    animation-timing-function: ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root),
+    ::view-transition-old(corner-nav),
+    ::view-transition-new(corner-nav) {
+        animation: none;
     }
-    .bar {
-        width: 0%;
+}
+
+/* ─── CONNECT ──────────────────────────────────────────────────────────────────
+   One screen rather than a scrolling page: a strongly blurred field with the
+   type centred on top of it. */
+
+.layout-connect {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    /* Type centred in the space above, colophon on the floor — the same two-row
+       arrangement Info uses inside its column. */
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+}
+
+/* The corner nav and the background are both fixed, so neither is a grid item —
+   the block of type is the only thing being centred. */
+.layout-connect .page-head {
+    position: relative;
+    z-index: 1;
+    align-self: center;
+    padding-block: var(--corner-band);
+}
+
+/* Above the fixed blurred background, like the type is. */
+.layout-connect .colophon {
+    position: relative;
+    z-index: 1;
+}
+
+.hero--blur {
+    /* How much of the page ground is washed over the blur. script.js reads this:
+       the corner nav samples the source image, so it has to be told how much is
+       laid over the top or it reads a colour nobody sees. */
+    --veil: 0.45;
+    position: fixed;
+    /* Bled well past the viewport. A blur fades out at the image's own edges,
+       and those edges have to land off-screen or they read as pale bands down
+       the sides of the page. */
+    inset: -16%;
+    height: auto;
+}
+
+.hero--blur img {
+    /* Blurred small, then magnified. 6px over a box an eighth of the size is
+       the same picture as 48px over the full one, but it composites in a
+       fraction of the time — a full-screen blur at this radius is enough work
+       to stall a weaker device on load. */
+    width: 12.5%;
+    height: 12.5%;
+    transform-origin: top left;
+    transform: scale(8);
+    filter: blur(6px);
+}
+
+/* A wash of the page's own ground over the blur, so the type sits on a settled
+   value rather than on whatever the photograph happens to be doing. --veil is
+   read by script.js: the corner nav samples the source image, so it has to be
+   told how much of this is laid over the top or it reads a colour that is not
+   what anyone sees. */
+.hero--blur::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bg-color);
+    opacity: var(--veil);
+}
+
+
+/* ─── SPLIT (INFO) ─────────────────────────────────────────────────────────────
+   Image beside the type rather than above it: one composed screen instead of a
+   full-bleed frame with a block of text underneath, which was the case study's
+   structure minus its grid. */
+
+.layout-split {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    /* Type on the left, image on the right, in that source order. The image
+       takes the larger share: this is a portfolio, and the picture should not
+       be the smaller half of the only screen it gets. The type side holds a
+       statement and two short lists, which need a measure, not a width. */
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
+}
+
+/* Keeps the .hero class so the corner nav still samples what is behind its
+   labels — that lookup is what decides whether they are white or ink. */
+.hero--split {
+    position: sticky;
+    top: 0;
+}
+
+/* Two frames stacked in the same box, already absolutely positioned by
+   .hero img. Only the upper one fades — the lower stays fully opaque as a bed
+   underneath it.
+
+   Fading both at once, one out and one in, is what a cross-fade looks like in
+   theory and it dips in practice: at the crossover both sit near half opacity
+   and the hero's own pale background shows straight through, so the frame
+   washes out to grey once a cycle. With a bed underneath there is never a
+   moment without a fully opaque image in the box.
+
+   This is written for exactly two frames; a third would need z-index handling
+   rather than :first-of-type / :last-of-type. */
+.hero--pair img:first-of-type {
+    opacity: 1;
+}
+
+.hero--pair img:last-of-type {
+    opacity: 0;
+    transition: opacity 1.6s ease;
+}
+
+.hero--pair img:last-of-type.is-shown {
+    opacity: 1;
+}
+
+/* Padded off the viewport edges by the band the corner labels occupy, so the
+   type never runs under Works or Connect. */
+.split-body {
+    display: grid;
+    /* One block, centred in the column. This carried a second row for the
+       colophon until Info dropped it; with nothing to sit on the floor there is
+       nothing for a second row to hold. */
+    align-content: center;
+    /* Inset further than the page gutter: hard against the image edge the
+       column read as cramped, whatever width it was given. Top and bottom clear
+       the corner band so the type never runs under Xavi, Works or Research. */
+    padding: var(--corner-band) clamp(2rem, 4.5vw, 4.5rem);
+}
+
+/* The generous block padding belongs to the full-width pages; here the column
+   itself is doing the spacing. */
+.layout-split .page-head {
+    padding: 0;
+    text-align: left;
+    align-self: center;
+}
+
+/* Info has no colophon: the page is one screen of type beside one picture, and
+   a copyright line on the floor of that column only competed with Research
+   pinned in the same corner. The rules that used to place it are gone with it;
+   the site's other pages still carry theirs. */
+
+/* Everything hangs on the column's left edge. The centred versions of these
+   blocks are the full-width pages'; here they share one axis with each other
+   and with the image beside them. */
+.layout-split .page-lede,
+.layout-split .page-lists {
+    margin-inline: 0;
+}
+
+/* Tighter between links than the full-width pages set, because this column is
+   narrow and the indent takes a little more of it: at the stock gap the fourth
+   link dropped to a second line just above the point where the page stacks. */
+.layout-split .page-links {
+    justify-content: flex-start;
+    gap: 1rem clamp(1.25rem, 2.2vw, 2.5rem);
+}
+
+/* Equal air on both sides of the link row. The two blocks arrive here carrying
+   different defaults — 48px above the links against 72px below them — which is
+   right on the full-width pages, where each block is centred and read on its
+   own, but in a column it leaves the row sitting closer to the statement than
+   to the lists, as though it belonged to the paragraph. One measure for both
+   edges, and because both are the same expression they stay equal at every
+   viewport height. */
+.layout-split .page-links,
+.layout-split .page-lists {
+    margin-top: clamp(2.75rem, 6.8vh, 5rem);
+}
+
+/* Unequal tracks, both starting on the same baseline.
+   Services carries the longest line on the page — "Procedural 3D design" — and
+   at equal widths it sat within a few pixels of wrapping, which is what the
+   phone breakpoint below already works around. Giving it the larger share
+   fixes that and makes the asymmetry earn its place rather than being applied
+   for effect. */
+.layout-split .page-lists {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+/* balance evens out a centred block; left-aligned, pretty is what keeps the
+   rag from stranding a short last line.
+
+   Set above body size, which is the hierarchy this column was missing: at 17px
+   the statement was the same size as "adidas" in the list below it, and the
+   page's only sentence read as a caption.
+
+   How far above is fixed by the column, not by taste. Monument Extended is a
+   very wide face — its average advance measures about 0.88em — so in a column
+   this size every extra point costs characters off the line. At 29px the
+   statement broke into six lines of twenty-one characters, which is a worse
+   read than the caption was. Around 22px is the most this column carries while
+   the line still holds together. The ch cap comes off because the column is
+   now the measure. */
+.layout-split .page-lede {
+    text-wrap: pretty;
+    max-width: none;
+    font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+    line-height: 1.4;
+    letter-spacing: -0.012em;
+}
+
+.layout-split .copy-email {
+    justify-items: start;
+}
+
+/* ─── COLOPHON ─────────────────────────────────────────────────────────────────
+   Last on every page. Smaller than the interface type and dimmer again than the
+   muted grey the labels use: it is a legal note, not part of the composition.
+   The only element deliberately allowed into the corner band, so it settles on
+   the same bottom line the corner labels sit on. */
+
+.colophon {
+    display: block;
+    padding: var(--corner-band) var(--corner-inset) var(--corner-inset);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    line-height: var(--row);
+    text-align: center;
+    color: var(--text-muted);
+    opacity: 0.55;
+}
+
+/* ─── INTRO ────────────────────────────────────────────────────────────────────
+   The greeting on first arrival at the home page, drawn frame by frame in
+   script.js. These rules only hold the opening state steady from the very
+   first paint — before the fonts are in and the first frame is drawn — and lock
+   the page in place while it plays. html.is-intro is set synchronously by the
+   script and removed when it hands the page back. */
+
+/* The scrollbar gutter is held open on the home page permanently, not only
+   while the greeting locks scrolling. Unreserved, the scrollbar appears the
+   moment the lock lifts, the page narrows, and the right-hand labels jump
+   sideways on the greeting's very last frame. Reserving it only during the
+   greeting is not enough either: Chrome takes a reserved gutter out of vw, and
+   the corner labels are sized in vw, so releasing it grows them a fraction and
+   they still shift. The home page always scrolls, so the gutter is always
+   filled by a real scrollbar and costs nothing.
+
+   Keyed to a class on the home page's <html> rather than html:has([data-intro]).
+   The greeting rewrites inline styles every frame, and Firefox can re-check a
+   :has() anchored at the root on DOM changes beneath it — work a plain class
+   never asks for. */
+html.has-intro {
+    scrollbar-gutter: stable;
+}
+
+html.is-intro {
+    overflow: hidden;
+}
+
+html.is-intro body {
+    overflow: hidden;
+}
+
+.is-intro .corner-nav a {
+    /* Hidden until the greeting brings them in, so they never flash in their
+       corners first and then jump to the centre. */
+    opacity: 0;
+    /* The script scales the words from their top-left corner and computes every
+       offset on that basis; a centred origin would throw the block off. */
+    transform-origin: 0 0;
+    /* The script sets the words' colour on every frame, in step with the
+       window. The corner nav's colour transition would trail each of those
+       changes and smear it, so it is off for as long as the greeting runs. */
+    transition: none;
+}
+
+/* Hidden until the window starts to open. */
+.is-intro [data-intro] .hero {
+    opacity: 0;
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────────────────────
+   Every width-based override lives here, last in the file. Media queries carry
+   no extra specificity, so they only win on source order — scattered through
+   the sections above, one of these silently lost to the rule it was meant to
+   override. Keeping them together at the end makes that impossible.
+
+   Two tiers:
+     tablet  ≤ 900px — side-by-side columns stop fitting
+     mobile  ≤ 600px — two-up grids and four true corners stop fitting
+
+   Everything else is fluid: the type is clamp()ed, the frames are aspect
+   ratios, and the layouts are fr units, so most of the range needs no help. */
+
+/* ── Info's split ─────────────────────────────────────────────────────────────
+   Higher than the tablet breakpoint, and the one place in the site that needs
+   its own. Two columns held down to 900px, but measured across the range the
+   type column gives out well before that: by 1135px the statement, the link
+   row and the colophon were all wrapping, the column ran taller than the
+   screen, and the colophon came down onto the Research label. 1200 is above
+   the whole of that band. */
+
+@media (max-width: 1200px) {
+    .layout-split {
+        grid-template-columns: 1fr;
     }
 
-    .gallery {
+    /* Stacked, the image goes back to the top whatever the source order says:
+       a page that opens on a face reads as an introduction, one that opens on
+       a paragraph reads as a document. */
+    .hero--split {
+        order: -1;
+    }
+
+    /* Full width now, so the statement gets a measure of its own again rather
+       than running the whole way across the page. */
+    .layout-split .page-lede {
+        max-width: 30ch;
+    }
+}
+
+/* ── Tablet ───────────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+    /* Info's own breakpoint is higher than this one — see above the tablet
+       block. Everything else here is unaffected. */
+
+    /* Three columns of archive leave each piece around 270px on a tablet. Two
+       is still a contact sheet and each piece is still worth looking at.
+
+       Independent scrolling stops here as well. It needs a pointer that can be
+       put over one column and held there; a thumb cannot aim at a strip of the
+       screen and would fight three overlapping scrollers. So the containers
+       stand down — display: contents removes their boxes and hands the pieces
+       back to the grid — and the page flows and scrolls as one again. */
+    .research-grid {
+        display: block;
+        height: auto;
+        column-count: 2;
+        column-gap: var(--research-gap);
+    }
+
+    .research-col {
+        display: contents;
+    }
+
+    .research-item {
+        break-inside: avoid;
+    }
+
+    /* The case study widths are proportions of the page, so on a tablet a third
+       of the width is under 280px — too small to read a render in. Each tier
+       steps up, keeping their order while the work stays big enough to look at.
+       Only --tier moves: the height ceiling on .case-block still applies. */
+    .case-block {
+        --tier: 82%;
+    }
+
+    .case-block--half {
+        --tier: 64%;
+    }
+
+    .case-block--third {
+        --tier: 46%;
+    }
+
+    /* A pair still fits side by side here, with a little more of the width
+       each and a shallower step between them. */
+    .case-pair {
+        gap: 6%;
+    }
+
+    .case-pair .case-block {
+        --tier: 45%;
+    }
+
+    .hero--split {
+        position: relative;
+        height: 60vh;
+        height: 60dvh;
+    }
+
+    /* The column's own floor padding was doing this; stacked, the block needs
+       its own breathing room above the colophon. */
+    .split-body {
+        padding-top: clamp(3rem, 8vh, 5rem);
+    }
+
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+    /* Two 4:5 frames side by side leave each around 170px — too small to read
+       anything in. Wide frames stop spanning, since there is only one track. */
+    .thumb-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* One column on a phone. The archive becomes a scroll rather than a sheet,
+       which is the only way thirty pieces are legible at this width. */
+    .research-grid {
+        column-count: 1;
+    }
+
+    .thumb--wide {
+        grid-column: 1;
+    }
+
+    /* With one track there is nothing for a solo frame to be odd against, and
+       half a phone's width is no width at all: it takes the full column like
+       every other frame. */
+    .thumb--solo {
+        grid-column: 1;
         width: 100%;
     }
 
-    .nav-grid{
-        padding: 30px;
+    /* Two thirds of a phone is around 260px — small enough that the work stops
+       being legible. Every block takes the width it can get, and the rhythm is
+       carried by the air between them alone. A tall piece still steps in from
+       the edges rather than running past the bottom of the screen: the height
+       ceiling on .case-block is what decides that. */
+    .case-block,
+    .case-block--half,
+    .case-block--third {
+        --tier: 100%;
     }
 
-    .item-vid-h {
-        width: 90vw;
-        height: auto;
-        margin: 30px auto;   
+    /* Half a phone each would make a pair two thumbnails. They stack into the
+       column like everything else, and the step between them goes with them —
+       a stagger needs two things abreast to read as one. */
+    .case-pair {
+        flex-direction: column;
+        gap: var(--case-gap);
     }
 
-    .item-vid-s {
-        width: 90vw;
-        height: auto;
-        margin: 30px auto;   
+    .case-pair .case-block {
+        --tier: 100%;
     }
 
-    .item-vid-v4{
-        width: 90vw;
-        height: auto;
-        margin: 30px auto;   
+    .case-pair > :nth-child(2),
+    .case-pair--lift > :nth-child(1) {
+        margin-top: 0;
     }
 
-    .item-vid-v9 {
-        width: 90vw;
-        height: auto;
-        margin: 30px auto;   
+    /* The credits used to need stacking here; they stack everywhere now, so
+       there is nothing left for this breakpoint to correct. */
+
+    /* Below this the two tracks are too narrow for the longest service, and the
+       lists read better stacked than wrapped mid-phrase. Info needs naming
+       explicitly: its own .layout-split rules are a class more specific than a
+       bare .page-lists and would otherwise keep the two tracks here. */
+    .page-lists,
+    .layout-split .page-lists {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
     }
 
-    .item-img-v {
-        width: 90vw;
-        height: auto;
-        margin: 30px auto;
-    }
-    
-    .item-img-h{
-        width: 90vw;
-        height: auto;
-        margin:30px auto;
+    /* Stacked, the outer alignment has nothing to sit opposite. */
+    .page-lists section:last-child {
+        text-align: left;
     }
 
-    .item-img-s{
-        width: 90vw;
-        height: auto;
-        margin:30px auto;
+    /* There is no clear space between the two bottom labels at this width, so
+       the colophon steps up out of the corner band rather than sharing it.
+       Info needed naming alongside this once, to outrank its own rule; it has
+       no colophon now, so the plain selector is enough. */
+    .colophon {
+        padding-bottom: calc(var(--corner-band) + var(--corner-inset));
     }
-
-    /*---INFO---*/
-
-    
-
 }
 
+/* ── Short viewports ──────────────────────────────────────────────────────── */
 
+/* Landscape phones. Width-based tiers can't see this: 844×390 is a "tablet" by
+   width but has less vertical room than any portrait phone. */
+@media (max-height: 520px) {
+    /* A 60dvh band pushed Info's type down into the pinned bottom labels, which
+       on a screen this short are already a third of the way up it. */
+    .hero--split {
+        height: 45vh;
+        height: 45dvh;
+    }
+
+    /* The generous vertical rhythm is measured against a tall screen; here it
+       is the whole budget. */
+    .split-body {
+        padding-top: clamp(1.5rem, 5vh, 3rem);
+    }
+
+    .page-head {
+        padding-block: clamp(3rem, 12vh, 7rem);
+    }
+}

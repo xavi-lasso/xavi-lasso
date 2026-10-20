@@ -1,0 +1,28 @@
+# Source media that stays on disk but never ships.
+#
+# Cloudflare Pages refuses a whole deployment if any single file is over
+# 25 MiB, so an original that size would block a deploy even though no page
+# links to it directly.
+#
+# QuickTime and TIFF are here as formats rather than filenames: neither is
+# something a browser can be relied on to display, so anything in them is a
+# working file by definition.
+*.mov
+*.tif
+*.tiff
+
+# Old masters already superseded by an optimized version in use elsewhere —
+# swept here so they're easy to delete in bulk later. See the folder itself
+# for which project each one belongs to.
+_old-masters/
+
+# Unused: the horizontal Laue clip is over the deploy limit and nothing on
+# the page loads it (only the vertical clip, via its -web.mp4, is live).
+projects/lounge_chair/lounge_vid_hero_horizontal.mp4
+
+# Scratch output from local tooling.
+_dims.html
+_sheet.html
+
+# Claude Code's per-project settings; nothing a visitor should be served.
+.claude/

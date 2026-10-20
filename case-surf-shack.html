@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-US">
+
+    <head>
+
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Surf Shack &mdash; Xavier Peñaherrera Lasso</title>
+      <link href="style.css" rel="stylesheet" type="text/css"/>
+      <link rel="preload" href="font/PPMonumentExtended-Light.woff2" as="font" type="font/woff2" crossorigin>
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+      <link rel="manifest" href="favicon/site.webmanifest">
+
+    </head>
+
+    <body>
+
+        <main class="layout-corners">
+
+            <!-- Same four labels as the home page, in the same corners. Works
+                 returns to the grid there rather than to a page of its own. -->
+            <nav class="corner-nav" aria-label="Main">
+              <a href="about.html">Xavi</a>
+              <a href="index.html">Works</a>
+              <a href="research.html">Research</a>
+              <a href="connect.html">Connect</a>
+            </nav>
+
+            <!-- The project opens the way the site does: one full-bleed frame,
+                 nothing over it but the four corners. -->
+            <div class="hero">
+              <img src="projects/surf_shack/surfshack_hero_03.webp" alt="The Surf Shack on an open beach at midday">
+            </div>
+
+            <header class="page-head">
+              <h1 class="page-title">Surf Shack</h1>
+              <p class="page-lede">A shelter shaped by the water it sits beside &mdash; every corner rounded away until the volume reads as something the tide left behind.</p>
+              <dl class="page-meta">
+                <div><dt>Discipline</dt><dd>Architecture · 3D</dd></div>
+                <div><dt>Client</dt><dd>Personal</dd></div>
+                <div><dt>Year</dt><dd>2024</dd></div>
+              </dl>
+            </header>
+
+            <!-- One column, wide air between blocks, nothing cropped. Each
+                 piece is only given a width; its height follows from its own
+                 proportions. The viewer opens the full file. -->
+            <div class="case-media">
+
+              <!-- The project's film, hosted on Vimeo, directly under the
+                   description. Every overlay the player can be told to drop is
+                   dropped — title, byline, portrait and badge — so nothing sits
+                   on the picture but the playback controls. It starts muted, so
+                   nobody is played sound they did not ask for; the controls are
+                   right there to turn it up. dnt keeps the player from setting
+                   tracking cookies. 16:9 is the film's own shape, read from
+                   Vimeo rather than assumed.
+                   A div and not an a.viewer-item: the player has its own
+                   controls and a click belongs to them, not to the lightbox
+                   opening over the top. Held at the column's resting width, as
+                   on Laue Lounge: run to the edges, a player's furniture ends
+                   up against the side of the screen with nothing to sit in. -->
+              <div class="case-block case-embed" style="--ar: 1.7778">
+                <iframe src="https://player.vimeo.com/video/699974550?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;muted=1&amp;dnt=1"
+                        title="Surfshack - An interactive Calm Space"
+                        loading="lazy"
+                        allow="fullscreen; picture-in-picture"
+                        allowfullscreen></iframe>
+              </div>
+
+              <a class="case-block case-block--full viewer-item" href="projects/surf_shack/surfshack_hero_01.webp" style="--ar: 1.7778">
+                <img src="projects/surf_shack/surfshack_hero_01.webp" width="1920" height="1080" alt="" loading="lazy">
+              </a>
+
+              <a class="case-block viewer-item" href="projects/surf_shack/surfshack_hero_06.webp" style="--ar: 1.8551">
+                <img src="projects/surf_shack/surfshack_hero_06.webp" width="1920" height="1035" alt="" loading="lazy">
+              </a>
+
+              <div class="case-pair">
+
+                <a class="case-block viewer-item" href="projects/surf_shack/surfshack_hero_05.webp" style="--ar: 1.7778">
+                  <img src="projects/surf_shack/surfshack_hero_05.webp" width="1920" height="1080" alt="" loading="lazy">
+                </a>
+
+                <a class="case-block viewer-item" href="projects/surf_shack/surfshack_hero_02.webp" style="--ar: 1.7979">
+                  <img src="projects/surf_shack/surfshack_hero_02.webp" width="1895" height="1054" alt="" loading="lazy">
+                </a>
+
+              </div>
+
+              <a class="case-block case-block--full viewer-item" href="projects/surf_shack/surfshack_hero_04.webp" style="--ar: 1.7778">
+                <img src="projects/surf_shack/surfshack_hero_04.webp" width="2560" height="1440" alt="" loading="lazy">
+              </a>
+
+            </div>
+
+            <footer class="page-foot">
+              <p class="page-foot-label">Next</p>
+              <!-- Last in the chain, so it wraps to the first project. -->
+              <a class="page-foot-link" href="case-australian-open.html">Australian Open</a>
+            </footer>
+
+            <footer class="colophon">&copy; 2026 Xavier Pe&ntilde;aherrera Lasso &mdash; All rights reserved</footer>
+
+        </main>
+
+      <script src="script.js"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-US" class="is-about">
+
+    <head>
+
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>About &mdash; Xavier Peñaherrera Lasso</title>
+      <link href="style.css" rel="stylesheet" type="text/css"/>
+      <link rel="preload" href="font/PPMonumentExtended-Light.woff2" as="font" type="font/woff2" crossorigin>
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+      <link rel="manifest" href="favicon/site.webmanifest">
+
+    </head>
+
+    <body>
+
+        <main class="layout-corners layout-split">
+
+            <!-- Xavi is this page, so it carries aria-current here. Works goes
+                 to the top of the home page rather than to its grid anchor —
+                 arriving from elsewhere, the hero should come first. -->
+            <nav class="corner-nav" aria-label="Main">
+              <a href="about.html" aria-current="page">Xavi</a>
+              <a href="index.html">Works</a>
+              <a href="research.html">Research</a>
+              <a href="connect.html">Connect</a>
+            </nav>
+
+            <!-- Type first, image second, which is both the reading order and
+                 the order they appear left to right. On a phone the image is
+                 sent back to the top with order — see the tablet breakpoint. -->
+
+            <!-- Grid column beside the image, not a block under it. -->
+            <div class="split-body">
+
+            <header class="page-head">
+              <!-- The statement is the page heading: with the name gone there is
+                   no other h1, and the document should not start at h2. -->
+              <h1 class="page-lede">Artist and designer whose work is rooted in the beauty of nature, driven by a desire to express what lies beyond words.</h1>
+
+              <!-- Copy Email is a span, not a link: script.js swaps the label
+                   in place when it is clicked. -->
+              <nav class="page-links" aria-label="Contact">
+                <span class="copy-email" data-email="xavierplasso@gmail.com">
+                  <span class="copy-label">Copy Email</span>
+                  <span class="copy-done" aria-hidden="true">Copied</span>
+                </span>
+                <a href="https://www.instagram.com/xavipl__/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.are.na/xavi-pl/channels" target="_blank" rel="noopener">Are.na</a>
+                <a href="https://www.linkedin.com/in/xavi-lasso" target="_blank" rel="noopener">LinkedIn</a>
+              </nav>
+
+              <!-- Set in sentence case rather than the small caps used for
+                   labels elsewhere: uppercasing would rewrite adidas, whose
+                   wordmark is lowercase by design. -->
+              <div class="page-lists">
+                <section>
+                  <h2>Services</h2>
+                  <ul>
+                    <li>Procedural 3D design</li>
+                    <li>Art direction</li>
+                    <li>Motion design</li>
+                    <li>Graphic design</li>
+                    <li>Creative direction</li>
+                    <li>Look development</li>
+                  </ul>
+                </section>
+                <section>
+                  <h2>Select Clients</h2>
+                  <ul>
+                    <li>adidas</li>
+                    <li>Australian Open</li>
+                    <li>Kelly Wearstler</li>
+                    <li>Ellison Studios</li>
+                    <li>Loewe</li>
+                    <li>Balmain</li>
+                  </ul>
+                </section>
+              </div>
+            </header>
+
+            </div>
+
+            <!-- Two frames that trade places on a slow cross-fade. Each carries
+                 its own focal point: the seascape is 2:3 and a centred crop
+                 lands on bare sky, so it is pulled down to the waterline; the
+                 portrait is square and only ever crops towards its own centre. -->
+            <div class="hero hero--split hero--pair">
+              <img src="images/xavi.webp" alt="Dusk over the ocean" style="object-position: center 82%">
+              <img src="images/xavi-2.webp" alt="Xavi Lasso" style="object-position: center 40%">
+            </div>
+
+        </main>
+
+      <script src="script.js"></script>
+
+    </body>
+
+</html>
