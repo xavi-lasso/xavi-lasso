@@ -304,6 +304,94 @@ html.viewer-open body {
     transition: none;
 }
 
+/* ── Scroll cue ──────────────────────────────────────────────────────────────
+   The home page opens on one full-screen frame, and nothing on it says the page
+   goes on. At bottom centre, between the two lower labels, sits the tip of an
+   arrow, drawn downwards from its top edge, held for a beat, then taken away
+   from the top down, over and over, until the page is scrolled. The stroke is
+   the 1.5px of the cursor and the type, so it belongs to the same hand. It is a
+   child of the nav, so it takes the labels' colour from the frame behind it for
+   free.
+
+   The draw and the wipe are a clip sweeping down the shape, not a scale. Scaling
+   a V thickens or thins its diagonals as it goes; a clip leaves the stroke
+   exactly as drawn and only decides how much of it is showing. The clip is
+   pushed 3px past the box on every side so the sharp tip of the miter, which
+   reaches beyond the end of the path, is never trimmed.
+
+   The box is a label's height and the chevron rests in the middle of it, so it
+   sits on the same line as the two labels either side. Its size is a multiple of
+   the label size, so it follows the nav up on tablets and phones.
+
+   The link around the chevron is only the box that is coloured, faded and
+   clicked, and the svg is what moves. Keeping the two apart is what lets the
+   fade-on-scroll be a plain opacity: an animation that fills forwards would
+   outrank it.
+
+   It waits for html:not(.is-intro), so on a first visit it begins when the
+   greeting hands the page back and not underneath it. */
+.corner-nav .scroll-cue {
+    left: 50%;
+    bottom: var(--corner-inset);
+    width: calc(var(--corner-size) * 1.8);
+    height: calc(var(--corner-size) * 1.15);
+    margin-left: calc(var(--corner-size) * -0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.35s ease, opacity 0.4s ease;
+}
+
+.scroll-cue svg {
+    display: block;
+    width: calc(var(--corner-size) * 1.4);
+    height: auto;
+    overflow: visible;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    /* Nothing showing until the loop starts, and between its delay and its first
+       frame. */
+    clip-path: inset(-3px -3px 100% -3px);
+}
+
+html:not(.is-intro) .scroll-cue svg {
+    animation: scroll-cue-sweep 2.6s cubic-bezier(0.65, 0, 0.35, 1) 0.9s infinite;
+}
+
+/* Revealed from the top down, held, then removed from the top down, so the
+   arrow reads as something travelling the length of its box. */
+@keyframes scroll-cue-sweep {
+    0%   { clip-path: inset(-3px -3px 100% -3px); }
+    45%  { clip-path: inset(-3px -3px -3px -3px); }
+    55%  { clip-path: inset(-3px -3px -3px -3px); }
+    100% { clip-path: inset(100% -3px -3px -3px); }
+}
+
+/* Gone as soon as the page moves, and back if it returns to the top. */
+html.is-scrolled .corner-nav .scroll-cue {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Reduced motion keeps the cue and drops the loop: a still chevron says the same
+   thing. */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-cue svg {
+        animation: none !important;
+        clip-path: none;
+    }
+}
+
+/* Under about 350px the two bottom labels run almost to the middle of the
+   screen and leave no clear space for it. */
+@media (max-width: 349px) {
+    .corner-nav .scroll-cue {
+        display: none;
+    }
+}
 /* ── Hero ────────────────────────────────────────────────────────────────── */
 
 /* Fills the viewport edge to edge, so all four labels sit over the media rather
@@ -898,6 +986,59 @@ html.has-drawn-cursor .viewer.is-on-dark {
     display: none;
 }
 
+/* On arrival the three columns rise into place one after another from the left,
+   fading in as they come and settling with a small bounce. Three separate
+   things arriving separately is the hint that they are separate things — each
+   column scrolls on its own — and it is shown rather than explained.
+
+   Only where they do scroll on their own (901px up, which takes in a landscape
+   tablet): below that the columns stand down and the page scrolls as one. And
+   only for anyone who has not asked for less motion.
+
+   Fill mode is backwards, not both, on purpose. That holds each column
+   invisible through its delay, so none of them flashes in place before its
+   turn, but lets go afterwards: a fill of forwards would leave a transform on
+   the column for good, and a transformed element is a different thing to
+   position against once it is done moving. Distances are in vh so the rise
+   keeps its proportion on any screen. */
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+    .research-col {
+        animation: research-col-in 1.15s backwards;
+        animation-delay: var(--col-delay, 0.1s);
+    }
+
+    .research-col:nth-child(2) {
+        --col-delay: 0.26s;
+    }
+
+    .research-col:nth-child(3) {
+        --col-delay: 0.42s;
+    }
+}
+
+@keyframes research-col-in {
+    0% {
+        opacity: 0;
+        transform: translateY(14vh);
+        animation-timing-function: cubic-bezier(0.22, 0.9, 0.3, 1);
+    }
+    40% {
+        opacity: 1;
+        transform: translateY(-1.8vh);
+        animation-timing-function: ease-in-out;
+    }
+    62% {
+        transform: translateY(0.8vh);
+    }
+    80% {
+        transform: translateY(-0.3vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* The archive runs on black, edge to edge, with the pieces butted against one
    another. Only the two tokens change: --bg-color is read by html and body for
    the ground, and by script.js for the ground's luminance, so switching it here
@@ -1286,15 +1427,27 @@ html.is-intro body {
    Everything else is fluid: the type is clamp()ed, the frames are aspect
    ratios, and the layouts are fr units, so most of the range needs no help. */
 
-/* ── Info's split ─────────────────────────────────────────────────────────────
-   Higher than the tablet breakpoint, and the one place in the site that needs
-   its own. Two columns held down to 900px, but measured across the range the
-   type column gives out well before that: by 1135px the statement, the link
-   row and the colophon were all wrapping, the column ran taller than the
-   screen, and the colophon came down onto the Research label. 1200 is above
-   the whole of that band. */
+/* ── Navigation size ──────────────────────────────────────────────────────────
+   The four corner labels are 20% larger on tablets and phones, where they are
+   tapped rather than pointed at and the stock size reads small against the
+   screen. Up to 1200px so a landscape tablet counts as one. --corner-band is
+   derived from this, so the space the page keeps clear for the labels grows
+   with them. */
 
 @media (max-width: 1200px) {
+    .layout-corners {
+        --corner-size: calc(clamp(1.05rem, 1.85vw, 1.75rem) * 1.2);
+    }
+}
+
+/* ── Info's split ─────────────────────────────────────────────────────────────
+   Stacks at the tablet breakpoint like everything else, so a landscape tablet
+   keeps the desktop layout. This was 1200px once, but between 901 and 1200 the
+   page stacked while the hero kept the sticky position it needs beside the
+   type, so the pinned picture sat on top of the text and the page could not be
+   scrolled past it. */
+
+@media (max-width: 900px) {
     .layout-split {
         grid-template-columns: 1fr;
     }
@@ -1311,14 +1464,38 @@ html.is-intro body {
     .layout-split .page-lede {
         max-width: 30ch;
     }
+
+    /* And on its own below the picture the type is centred, as it is on the
+       site's other pages, rather than hung from the left edge of a column that
+       is no longer there. The side-by-side layout keeps its left axis. Two
+       equal tracks for the lists, so the seam between them sits on the page
+       axis rather than off to one side. */
+    .layout-split .page-head {
+        text-align: center;
+    }
+
+    .layout-split .page-lede {
+        margin-inline: auto;
+        text-wrap: balance;
+    }
+
+    .layout-split .page-links {
+        justify-content: center;
+    }
+
+    .layout-split .copy-email {
+        justify-items: center;
+    }
+
+    .layout-split .page-lists {
+        margin-inline: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* ── Tablet ───────────────────────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
-    /* Info's own breakpoint is higher than this one — see above the tablet
-       block. Everything else here is unaffected. */
-
     /* Three columns of archive leave each piece around 270px on a tablet. Two
        is still a contact sheet and each piece is still worth looking at.
 
@@ -1374,10 +1551,16 @@ html.is-intro body {
         height: 60dvh;
     }
 
-    /* The column's own floor padding was doing this; stacked, the block needs
-       its own breathing room above the colophon. */
+    /* Stacked, the block needs its own room, and the floor of the page gets a
+       little more than the gap between the picture and the type: that gap is
+       this padding plus the statement's own top margin, and the room under the
+       last list is a quarter again as much, so the page ends on air rather than
+       running out just below the text. It never drops below the band the two
+       bottom labels occupy. */
     .split-body {
-        padding-top: clamp(3rem, 8vh, 5rem);
+        --split-top: clamp(3rem, 8vh, 5rem);
+        padding-top: var(--split-top);
+        padding-bottom: max(calc((var(--split-top) + clamp(3rem, 7vh, 5rem)) * 1.25), var(--corner-band));
     }
 
 }
@@ -1420,12 +1603,44 @@ html.is-intro body {
         --tier: 100%;
     }
 
+    /* On a phone the work runs edge to edge and flush: no air between pieces, and
+       no height ceiling stepping a tall one in from the sides. The air that
+       separates work on a larger page would only read as bands of bare ground
+       between full-width frames. The space above the first piece and the footer
+       below the last are untouched. script.js leaves the viewer closed at this
+       width too, since every piece is already as large as it can be. */
+    .case-media {
+        gap: 0;
+    }
+
+    .case-block,
+    .case-block--full {
+        width: 100%;
+    }
+
+    /* A case study's hero is the full width of the screen at its own proportions
+       rather than a full-height frame cropped to fit. Cropped to a tall phone
+       screen a landscape hero loses most of its sides; this way none of it is
+       lost, and the title follows straight on beneath it. Only case studies: the
+       home page's greeting is built around a full-screen hero, and Info and
+       Connect have their own. The width and height attributes on each image give
+       the browser its shape before it loads, so the page does not jump. */
+    .layout-corners:not([data-intro]) > .hero:not(.hero--split):not(.hero--blur) {
+        height: auto;
+    }
+
+    .layout-corners:not([data-intro]) > .hero:not(.hero--split):not(.hero--blur) img,
+    .layout-corners:not([data-intro]) > .hero:not(.hero--split):not(.hero--blur) video {
+        position: static;
+        height: auto;
+    }
+
     /* Half a phone each would make a pair two thumbnails. They stack into the
        column like everything else, and the step between them goes with them —
        a stagger needs two things abreast to read as one. */
     .case-pair {
         flex-direction: column;
-        gap: var(--case-gap);
+        gap: 0;
     }
 
     .case-pair .case-block {
@@ -1448,11 +1663,6 @@ html.is-intro body {
     .layout-split .page-lists {
         grid-template-columns: 1fr;
         gap: 2.5rem;
-    }
-
-    /* Stacked, the outer alignment has nothing to sit opposite. */
-    .page-lists section:last-child {
-        text-align: left;
     }
 
     /* There is no clear space between the two bottom labels at this width, so
@@ -1479,7 +1689,8 @@ html.is-intro body {
     /* The generous vertical rhythm is measured against a tall screen; here it
        is the whole budget. */
     .split-body {
-        padding-top: clamp(1.5rem, 5vh, 3rem);
+        --split-top: clamp(1.5rem, 5vh, 3rem);
+        padding-top: var(--split-top);
     }
 
     .page-head {

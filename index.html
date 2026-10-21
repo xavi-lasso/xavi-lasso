@@ -30,6 +30,16 @@
               <a href="#works">Works</a>
               <a href="research.html">Research</a>
               <a href="connect.html">Connect</a>
+              <!-- Not a label: the hero fills the screen, and nothing on it says
+                   there is more below. The tip of an arrow, bottom centre, that
+                   draws downwards and wipes out on a loop until the page is
+                   scrolled. It lives in the nav so script.js colours it like the
+                   labels — white over a dark frame, ink over a pale one — and it
+                   sits after the four corners so the intro, which places those,
+                   never sees it. -->
+              <a class="scroll-cue" href="#statement" aria-label="Scroll down">
+                <svg viewBox="0 0 24 12" aria-hidden="true" focusable="false"><path d="M1 1l11 10L23 1" vector-effect="non-scaling-stroke"/></svg>
+              </a>
             </nav>
 
             <!-- Fills the viewport, so all four labels sit over the media.
@@ -44,7 +54,7 @@
             <!-- Full-bleed statement between the hero and the grid. Runs the
                  whole width, set in the same Monument Light as the nav, so it
                  reads as a held breath rather than a caption. -->
-            <section class="statement">
+            <section class="statement" id="statement">
               <p>Inspired by nature&rsquo;s beauty, driven by the desire to evoke what lies beyond words</p>
             </section>
 

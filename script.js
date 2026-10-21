@@ -403,9 +403,19 @@ function initViewer() {
     viewerEl.appendChild(close);
     document.body.appendChild(viewerEl);
 
+    // On a phone the work already runs the full width of the screen — in a case
+    // study, and in the research page's single column — so the viewer would show
+    // the same picture at the same size. Checked at the click, not once at load,
+    // so rotating or resizing across the breakpoint takes effect straight away.
+    // Must match the mobile breakpoint in style.css.
+    const phone = matchMedia('(max-width: 600px)');
+
     items.forEach((item, index) => {
         item.addEventListener('click', e => {
+            // Still cancelled: the link points at the file itself, and following
+            // it would leave the page.
             e.preventDefault();
+            if (phone.matches) return;
             openViewer(index);
         });
     });
@@ -890,6 +900,37 @@ function initPointerTone() {
     });
 }
 
+// ─── SCROLL CUE ───────────────────────────────────────────────────────────────
+
+// The home page's cue (see .scroll-cue in style.css) is there to say the page
+// goes on, so it has done its job the moment the page moves. This only keeps one
+// class in step with that; the fade, and everything else, is CSS. A few pixels
+// of slack so a nudge or a scrollbar settling does not dismiss it.
+function initScrollCue() {
+    const cue = document.querySelector('.scroll-cue');
+    if (!cue) return;
+    const root = document.documentElement;
+    const update = () => root.classList.toggle('is-scrolled', scrollY > 40);
+    addEventListener('scroll', update, { passive: true });
+    update();
+
+    // Clicked, it carries the page down to where the hero ends, so the statement
+    // below it fills the screen. Scrolled to here in script rather than by
+    // following the link's #statement: the address would pick up a hash, and a
+    // reload with a hash is a deep link, which the intro deliberately skips. The
+    // href stays as the fallback for when this does not run.
+    cue.addEventListener('click', e => {
+        const target = document.querySelector('.statement');
+        if (!target) return;
+        e.preventDefault();
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        scrollTo({
+            top: target.getBoundingClientRect().top + scrollY,
+            behavior: reduce ? 'auto' : 'smooth'
+        });
+    });
+}
+
 // ─── START ────────────────────────────────────────────────────────────────────
 
 // Every navigation is a real page load, so this runs once per page and there is
@@ -903,5 +944,6 @@ initViewer();
 initCornerNav();
 initVideos();
 initHeroPair();
+initScrollCue();
 // After initViewer, which is what builds the slides this reads.
 initPointerTone();
