@@ -132,6 +132,23 @@ img {
     opacity: 0.5;
 }
 
+/* ─── VISUALLY HIDDEN ──────────────────────────────────────────────────────────
+   Text that is on the page for search engines and screen readers and not for the
+   eye. The home page and Research open on pure imagery with no heading, which
+   the design wants, but a page with no h1 tells a search engine nothing about
+   what it is. Clipped rather than display: none, which would hide it from both. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* ─── MEDIA VIEWER ────────────────────────────────────────────────────────────── */
 
 /* Items stack at full viewport width and scroll vertically. Nothing is scaled to
@@ -687,6 +704,20 @@ html.is-scrolled .corner-nav .scroll-cue {
     max-width: 40ch;
     font-size: var(--text-body);
     line-height: 1.65;
+    text-wrap: balance;
+}
+
+/* A short line of fact under a statement — where someone is based. The labels'
+   small caps and the muted tone, close under the sentence it qualifies. Balanced
+   so that where the column is narrow enough to wrap it, it breaks into two even
+   halves and not a line and an orphan. */
+.page-location {
+    margin-top: clamp(1.1rem, 2.4vh, 1.6rem);
+    font-size: var(--text-ui);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ui);
+    line-height: var(--row);
+    color: var(--text-muted);
     text-wrap: balance;
 }
 
@@ -1437,6 +1468,25 @@ html.is-intro body {
 @media (max-width: 1200px) {
     .layout-corners {
         --corner-size: calc(clamp(1.05rem, 1.85vw, 1.75rem) * 1.2);
+    }
+}
+
+/* ── Info's column on a short, narrow screen ──────────────────────────────────
+   Between 901 and 1200px Info keeps its picture-and-type layout, and its column
+   is at its narrowest: the location line wraps to two lines and the whole column
+   is taller than it was. A landscape tablet is also the shortest screen it meets
+   there, so the air between the statement, the contact row and the lists is
+   tightened to keep the last list clear of the two bottom labels. Without it the
+   page scrolls a few dozen pixels and the labels sit on top of the list. */
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    .layout-split .page-links,
+    .layout-split .page-lists {
+        margin-top: clamp(1.5rem, 3.6vh, 2.25rem);
+    }
+
+    .page-location {
+        margin-top: 0.8rem;
     }
 }
 
